@@ -1,9 +1,19 @@
 const express = require("express");
 const bookId = require("../handlers/bookId");
 const router = express.Router();
+const { Book } = require("../db");
 
-router.get("/", (req, res) => {
-  res.send("GET BOOK");
+router.get("/", async(req, res) => {
+  try{
+      const allBooks = await Book.findAll() 
+      if(allBooks){
+        res.status(200).json(allBooks);
+      } else{
+        throw Error("error base de datos")
+      }
+  }catch(error){
+    res.status(404).json({ error: error.message });
+  }
 });
 
 router.get("/:id", async (req, res) => {
