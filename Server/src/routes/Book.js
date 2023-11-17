@@ -3,18 +3,29 @@ const bookId = require("../handlers/bookId");
 const filteredBooks = require("../handlers/filteredBooks");
 
 const router = express.Router();
-const { Book } = require("../db");
+const { Books } = require("../db");
+const CreateBook = require("../handlers/CreateBook");
 
-router.get("/", async(req, res) => {
-  try{
-      const allBooks = await Book.findAll() 
-      if(allBooks){
-        res.status(200).json(allBooks);
-      } else{
-        throw Error("error base de datos")
+router.get("/", async (req, res) => {
+  const name = req.query.name;
+  if (name) {
+    const allBook = await Books.findAll({
+      where: {
+        title: name
       }
-  }catch(error){
-    res.status(404).json({ error: error.message });
+    })
+  } else {
+    
+    try {
+      const allBooks = await Books.findAll();
+      if (allBooks) {
+        res.status(200).json(allBooks);
+      } else {
+        throw Error("error base de datos");
+      }
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
   }
 });
 
@@ -39,6 +50,36 @@ router.get("/:id", async (req, res) => {
     }
   } catch (error) {
     res.status(404).json({ error: error.message });
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const {
+      id,
+      title,
+      author,
+      image,
+      year,
+      price,
+      pages,
+      active,
+      description,
+    } = req.body;
+    const newBook = await CreateBook({
+      id,
+      title,
+      author,
+      image,
+      year,
+      price,
+      pages,
+      active,
+      description,
+    });
+    res.status(200).json(newBook)
+  } catch (error) {
+    res.status(400).json({error: error.message})
   }
 });
 
