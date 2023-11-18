@@ -1,9 +1,9 @@
 const { Books } = require("../db");
 
 const CreateBook = async ({
-  id,
   title,
   author,
+  gender,
   image,
   year,
   price,
@@ -12,9 +12,9 @@ const CreateBook = async ({
   description,
 }) => {
   const newBook = await Books.create({
-    id,
     title,
     author,
+    gender,
     image,
     year,
     price,
@@ -22,7 +22,7 @@ const CreateBook = async ({
     active,
     description,
   });
-    return newBook
+  return newBook;
 };
 
 module.exports = CreateBook;
