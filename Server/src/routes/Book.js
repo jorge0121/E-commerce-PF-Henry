@@ -8,7 +8,13 @@ const router = express.Router();
 const { Books } = require("../db");
 
 router.get("/", async (req, res) => {
+
+//Query-----------------------------------------------------------------------------------------------------------------------
   const name = req.query.name;
+  const { page = 1, pageSize = 2 } = req.query;          // paginado max 2 (pageSize)
+  const offset = (page - 1) * pageSize;
+ 
+ //Busqueda por Nombre -------------------------------------------------------------------------------------------------------
   if (name) {
     const allBook = await Books.findAll({
       where: {
@@ -17,8 +23,13 @@ router.get("/", async (req, res) => {
     });
     res.status(200).json(allBook);
   } else {
+
+ // Data Paginada ----------------------------------------------------------------------------------------------------   
     try {
-      const allBooks = await Books.findAll();
+      const allBooks = await Books.findAll({     //Ejemplo  localhost:3001/book?page=2
+        offset,    
+        limit: parseInt(pageSize)
+      });
       if (allBooks) {
         res.status(200).json(allBooks);
       } else {
@@ -29,7 +40,7 @@ router.get("/", async (req, res) => {
     }
   }
 });
-
+// Fltros ----------------------------------------------------------------------------------------------------
 router.get("/filter", async (req, res) => {
   const { author, gender, year } = req.query;
   try {
@@ -39,7 +50,7 @@ router.get("/filter", async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 });
-
+// Details ----------------------------------------------------------------------------------------------------
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -54,6 +65,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Update  ----------------------------------------------------------------------------------------------------
 router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
   const book = req.body;
@@ -65,6 +77,7 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
+// Create ----------------------------------------------------------------------------------------------------
 router.post("/", async (req, res) => {
   try {
     const {

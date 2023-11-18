@@ -1,6 +1,6 @@
 const { Book } = require("../db");
 
-const bookId = async (id) => {
+const bookId = async id => {
   try {
     const idBook = await Book.findByPk(id);
     return idBook;
@@ -8,7 +8,5 @@ const bookId = async (id) => {
     throw error;
   }
 };
-
-
 
 module.exports = bookId;

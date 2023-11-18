@@ -1,7 +1,6 @@
 const express = require("express");
 const {database } = require("./src/db")
-
-const server = express()
+const server = require("./src/server")
 
 
 database.sync({ force: true}).then(() => {
