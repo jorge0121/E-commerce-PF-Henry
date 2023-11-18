@@ -1,6 +1,7 @@
 const express = require("express");
 const bookId = require("../handlers/bookId");
 const filteredBooks = require("../handlers/filteredBooks");
+const updateBook = require("../handlers/updateBook");
 
 const router = express.Router();
 const { Books } = require("../db");
@@ -11,11 +12,11 @@ router.get("/", async (req, res) => {
   if (name) {
     const allBook = await Books.findAll({
       where: {
-        title: name
-      }
-    })
+        title: name,
+      },
+    });
+    res.status(200).json(allBook);
   } else {
-    
     try {
       const allBooks = await Books.findAll();
       if (allBooks) {
@@ -53,6 +54,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.put("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  const book = req.body;
+  try {
+    const bookUpdated = await updateBook(id, book);
+    res.status(201).json(bookUpdated);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const {
@@ -77,9 +89,9 @@ router.post("/", async (req, res) => {
       active,
       description,
     });
-    res.status(200).json(newBook)
+    res.status(200).json(newBook);
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({ error: error.message });
   }
 });
 
