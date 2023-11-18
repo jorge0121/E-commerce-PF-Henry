@@ -10,17 +10,18 @@ module.exports = (database) => {
       },
       title: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
       author: {
         type: DataTypes.STRING,
-        // unique: true,
+        allowNull: false,
+      },
+      gender: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       image: {
         type: DataTypes.STRING,
-        // unique: true,
         allowNull: false,
       },
       year: {
@@ -32,23 +33,15 @@ module.exports = (database) => {
       },
       pages: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
-    //   gender: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //   },
       active: {
         type: DataTypes.BOOLEAN,
-        // unique: true,
         allowNull: false,
       },
       description: {
         type: DataTypes.STRING,
-        // unique: true,
         allowNull: false,
       },
-
     },
     {
       timestamps: false,

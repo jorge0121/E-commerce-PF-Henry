@@ -68,9 +68,9 @@ router.put("/update/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const {
-      id,
       title,
       author,
+      gender,
       image,
       year,
       price,
@@ -79,9 +79,9 @@ router.post("/", async (req, res) => {
       description,
     } = req.body;
     const newBook = await CreateBook({
-      id,
       title,
       author,
+      gender,
       image,
       year,
       price,
