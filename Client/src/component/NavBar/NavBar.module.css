@@ -8,6 +8,7 @@
 }
 
 .brand {
+  display: flex;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
@@ -34,5 +35,5 @@
 }
 
 .navlinks a:hover {
-  background-color: #555;
+  background-color: #fafafa;
 }
