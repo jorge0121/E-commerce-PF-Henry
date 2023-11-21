@@ -69,7 +69,6 @@ router.get("/:id", async (req, res) => {
 router.post("/bulke", async (req, res) => {
   try {
     const books = req.body;
-    console.log('books', books)
     const created = await Books.bulkCreate(books);
     res.status(201).json(created);
   } catch (error) {

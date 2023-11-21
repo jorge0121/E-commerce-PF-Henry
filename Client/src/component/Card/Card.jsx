@@ -11,7 +11,7 @@ function Card({ book }) {
         <h1> Titulo: {title}</h1>
       </Link>
       <img src={image} alt="book's image" />
-      <h2>Precio: {price} $</h2>
+      <h2>Precio: US$ {price} </h2>
     </div>
   );
 }

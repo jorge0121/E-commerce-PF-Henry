@@ -18,13 +18,10 @@ function Detail() {
       <h1>Titulo: {detail.title}</h1>
       <h2>Autor: {detail.author}</h2>
       <img src={detail.image} alt="book's image" className="bookImage" />
-      <p>
-        Descripcion: <br />
-        {detail.description}
-      </p>
+      <h3> Descripcion: </h3> <p>{detail.description}</p>
       <h3>Año de publicacion: {detail.year}</h3>
       <h3>Genero: {detail.gender}</h3>
-      <h2>Precio: {detail.price} $</h2>
+      <h2>Precio: US$ {detail.price} </h2>
     </>
   );
 }

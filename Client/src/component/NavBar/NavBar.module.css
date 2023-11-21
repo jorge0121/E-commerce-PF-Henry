@@ -37,3 +37,46 @@
 .navlinks a:hover {
   background-color: #fafafa;
 }
+
+.searchbar {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo del input de búsqueda */
+.searchinput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+  width: 200px;
+  font-size: 14px;
+}
+
+.searchbutton {
+  padding: 8px 12px;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Hover sobre el botón de búsqueda */
+.searchbutton:hover {
+  background-color: rgb(46, 45, 45);
+  color: #fff;
+}
+/* Opcional: Estilos para hacer la barra de búsqueda responsiva */
+@media (max-width: 600px) {
+  .searchbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchinput {
+    margin-bottom: 8px;
+    width: 100%;
+  }
+}
