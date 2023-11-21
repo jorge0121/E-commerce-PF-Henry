@@ -8,13 +8,12 @@ const router = express.Router();
 const { Books } = require("../db");
 
 router.get("/", async (req, res) => {
-
-//Query-----------------------------------------------------------------------------------------------------------------------
+  //Query-----------------------------------------------------------------------------------------------------------------------
   const name = req.query.name;
-  const { page = 1, pageSize = 2 } = req.query;          // paginado max 2 (pageSize)
+  const { page = 1, pageSize = 2 } = req.query; // paginado max 2 (pageSize)
   const offset = (page - 1) * pageSize;
- 
- //Busqueda por Nombre -------------------------------------------------------------------------------------------------------
+
+  //Busqueda por Nombre -------------------------------------------------------------------------------------------------------
   if (name) {
     const allBook = await Books.findAll({
       where: {
@@ -23,12 +22,12 @@ router.get("/", async (req, res) => {
     });
     res.status(200).json(allBook);
   } else {
-
- // Data Paginada ----------------------------------------------------------------------------------------------------   
+    // Data Paginada ----------------------------------------------------------------------------------------------------
     try {
-      const allBooks = await Books.findAll({     //Ejemplo  localhost:3001/book?page=2
-        offset,    
-        limit: parseInt(pageSize)
+      const allBooks = await Books.findAll({
+        //Ejemplo  localhost:3001/book?page=2
+        offset,
+        limit: parseInt(pageSize),
       });
       if (allBooks) {
         res.status(200).json(allBooks);
@@ -62,6 +61,20 @@ router.get("/:id", async (req, res) => {
     }
   } catch (error) {
     res.status(404).json({ error: error.message });
+  }
+});
+
+// bulk create---------------------------------------------------------------------------------------------------
+
+router.post("/bulke", async (req, res) => {
+  try {
+    const books = req.body;
+    console.log('books', books)
+    const created = await Books.bulkCreate(books);
+    res.status(201).json(created);
+  } catch (error) {
+    res.status(404).json(error.message);
+    console.log('error', error)
   }
 });
 

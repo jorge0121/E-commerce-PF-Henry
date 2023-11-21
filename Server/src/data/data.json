@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Cien años de soledad",
+    "author": "Gabriel Garcia",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "1967",
+    "price": "150",
+    "pages": "123",
+    "active": true,
+    "description": "ad"
+  },
+  {
+    "title": "Historias de Miedo Para Contar en la Oscuridad",
+    "author": "Gillermo Del Toro",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "2017",
+    "price": "198",
+    "pages": "123",
+    "active": true,
+    "description": "ds"
+  },
+  {
+    "title": "Mientra llueve",
+    "author": "Gabriel Garcia",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "1978",
+    "price": "145",
+    "pages": "123",
+    "active": true,
+    "description": "sd"
+  },
+  {
+    "title": "Luna llena",
+    "author": "Miguel Ferez",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "2014",
+    "pages": "123",
+    "active": true,
+    "price": "570",
+    "description": "ds"
+  },
+  {
+    "title": "Luz del mundo",
+    "author": "Jose Barrios",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "2018",
+    "price": "489",
+    "pages": "123",
+    "active": true,
+    "description": "sd"
+  },
+  {
+    "title": "Mar de lagrimas",
+    "author": "Marcos Mendoza",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "1945",
+    "price": "150",
+    "pages": "123",
+    "active": true,
+    "description": "sd"
+  },
+  {
+    "title": "No busqué en el pasado",
+    "author": "Maria Zambrano",
+    "gender": "historia",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "2010",
+    "price": "350",
+    "pages": "123",
+    "active": true,
+    "description": "ds"
+  },
+  {
+    "title": "El origen de la felicidad",
+    "author": "Carlos Diaz",
+    "gender": "literatura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "1995",
+    "price": "263",
+    "pages": "323",
+    "active": true,
+    "description": "s"
+  },
+  {
+    "title": "El truco del maestro",
+    "author": "Angela Reynales",
+    "gender": "historia",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "2014",
+    "price": "350",
+    "pages": "123",
+    "active": true,
+    "description": "ds"
+  },
+  {
+    "title": "Faltan solo dos horas",
+    "author": "Mayra Dominguez",
+    "gender": "historia",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": "1995",
+    "pages": "323",
+    "active": true,
+    "price": "148",
+    "description": "sd"
+  }
+]

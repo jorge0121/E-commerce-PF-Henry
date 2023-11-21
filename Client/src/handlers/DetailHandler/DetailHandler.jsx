@@ -7,7 +7,7 @@ export function DetailHandler() {
 
   const detailHandler = async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/books/${id}`);
+      const { data } = await axios(`http://localhost:3001/book/${id}`);
       dispatch(setBookDetail(data));
     } catch (error) {
       console.log("error", error);

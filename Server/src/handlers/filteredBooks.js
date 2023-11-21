@@ -1,4 +1,4 @@
-const { Book } = require("../db");
+const { Books } = require("../db");
 const { Op } = require("sequelize");
 
 const filteredBooks = async (author, gender, year) => {
@@ -18,7 +18,7 @@ const filteredBooks = async (author, gender, year) => {
       const yearOk = year.trim();
       bookParams.year = yearOk;
     }
-    const books = await Book.findAll({ where: bookParams });
+    const books = await Books.findAll({ where: bookParams });
     const filteredBooks = books.map((book) => book.dataValues);
     return filteredBooks;
   } catch (error) {
