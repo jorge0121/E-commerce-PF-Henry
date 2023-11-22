@@ -19,6 +19,7 @@ function Detail() {
       <h2>Autor: {detail.author}</h2>
       <img src={detail.image} alt="book's image" className="bookImage" />
       <h3> Descripcion: </h3> <p>{detail.description}</p>
+      <br />
       <h3>Año de publicacion: {detail.year}</h3>
       <h3>Genero: {detail.gender}</h3>
       <h4>Numero de paginas: {detail.pages}</h4>
