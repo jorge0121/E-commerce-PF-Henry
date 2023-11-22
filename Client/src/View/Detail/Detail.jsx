@@ -21,6 +21,7 @@ function Detail() {
       <h3> Descripcion: </h3> <p>{detail.description}</p>
       <h3>Año de publicacion: {detail.year}</h3>
       <h3>Genero: {detail.gender}</h3>
+      <h4>Numero de paginas: {detail.pages}</h4>
       <h2>Precio: US$ {detail.price} </h2>
     </>
   );

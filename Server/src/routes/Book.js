@@ -26,8 +26,8 @@ router.get("/", async (req, res) => {
     try {
       const allBooks = await Books.findAll({
         //Ejemplo  localhost:3001/book?page=2
-        offset,
-        limit: parseInt(pageSize),
+        // offset,
+        // limit: parseInt(pageSize)
       });
       if (allBooks) {
         res.status(200).json(allBooks);

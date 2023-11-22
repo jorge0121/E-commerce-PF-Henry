@@ -24,6 +24,7 @@ export function Filter() {
       // Agregar el nuevo objeto al array
       autoresUnicos.push(nuevoAutor);
     }
+
     if (!yearsSet.has(year)) {
       yearsSet.add(year);
 
@@ -47,7 +48,7 @@ export function Filter() {
     value: book.year,
     label: book.year,
   }));
-  const dataG = books.map((book) => ({
+  const dataG = gendersUnicos.map((book) => ({
     value: book.gender,
     label: book.gender,
   }));

@@ -1,3 +1,4 @@
+import "./FormSelect.css";
 import Select from "react-select";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,19 +36,20 @@ function FormSelect() {
     <>
       <form action="">
         <Select
-          isDisabled={isAuthor}
+          // isDisabled={isAuthor}
           name="author"
           value={author}
           options={dataA}
           onChange={handlerAutorChange}
+          className="selectAutor"
         />
 
-        <Checkbox
+        {/* <Checkbox
           checked={!isAuthor}
           onChange={() => setIsAuthor((state) => !state)}
         >
           Autor
-        </Checkbox>
+        </Checkbox> */}
         {author ? (
           <Checkbox
             checked={author}
@@ -57,20 +59,20 @@ function FormSelect() {
           </Checkbox>
         ) : null}
         <Select
-          isDisabled={isYear}
+          // isDisabled={isYear}
           name="year"
           value={year}
           options={dataY}
-          onChange={(event) => {
-            handlerYearChange(event);
-          }}
+          onChange={handlerYearChange}
+          className="selectAutor"
+
         />
-        <Checkbox
+        {/* <Checkbox
           checked={!isYear}
           onChange={() => setIsYear((state) => !state)}
         >
           Año
-        </Checkbox>
+        </Checkbox> */}
         {year ? (
           <Checkbox
             checked={year}
@@ -80,23 +82,21 @@ function FormSelect() {
           </Checkbox>
         ) : null}
         <Select
-          className="basic-single"
-          classNamePrefix="select"
-          isDisabled={isGender}
+          className="selectAutor"
+          // isDisabled={isGender}
           name="gender"
           value={gender}
           options={dataG}
-          onChange={(event) => {
-            handlerGenderChange(event);
-          }}
+          onChange={handlerGenderChange}
+          
         />
 
-        <Checkbox
+        {/* <Checkbox
           checked={!isGender}
           onChange={() => setIsGender((state) => !state)}
         >
           Genero
-        </Checkbox>
+        </Checkbox> */}
         {gender ? (
           <Checkbox
             checked={gender}
@@ -107,6 +107,7 @@ function FormSelect() {
         ) : null}
 
         <button
+        className="filterButton"
           onClick={handlerFilter}
           disabled={author || year || gender ? false : true}
         >
