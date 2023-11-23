@@ -3,6 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   books: [],
   booksCopia: [],
+  dataA: [],
+  dataY: [],
+  dataG: [],
+  totalData: 1,
 };
 
 export const bookSlice = createSlice({
@@ -15,8 +19,27 @@ export const bookSlice = createSlice({
     setBookCopia: (state, action) => {
       state.booksCopia = action.payload;
     },
+    setDataA: (state, action) => {
+      state.dataA = action.payload;
+    },
+    setDataY: (state, action) => {
+      state.dataY = action.payload;
+    },
+    setDataG: (state, action) => {
+      state.dataG = action.payload;
+    },
+    setTotalData: (state, action) => {
+      state.totalData = action.payload;
+    },
   },
 });
 
-export const { setBook, setBookCopia } = bookSlice.actions;
+export const {
+  setBook,
+  setBookCopia,
+  setDataA,
+  setDataY,
+  setDataG,
+  setTotalData,
+} = bookSlice.actions;
 export default bookSlice.reducer;

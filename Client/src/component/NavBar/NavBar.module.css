@@ -36,6 +36,7 @@
 
 .navlinks a:hover {
   background-color: #fafafa;
+  color: rgb(68, 65, 65);
 }
 
 .searchbar {

@@ -1,8 +1,4 @@
-.select {
-  color: black;
-}
-
-.filterButton {
+.orderButton {
     padding: 8px 12px;
     background-color: #ffffff;
     color: #0a0a0a;
@@ -13,7 +9,7 @@
     margin-top: 15px;
   }
 
-.filterButton:hover {
+.orderButton:hover {
     background-color: #2e54d1;
     color: #fff;
   }

@@ -3,6 +3,8 @@ const bookId = require("../handlers/bookId");
 const updateBook = require("../handlers/updateBook");
 const CreateBook = require("../handlers/CreateBook");
 const filteredBooks = require("../handlers/filteredBooks");
+const sortB = require("../handlers/sortB");
+const filtersAutYearGen = require("../handlers/filtersAutYearGen");
 
 const router = express.Router();
 const { Books } = require("../db");
@@ -12,7 +14,7 @@ router.get("/", async (req, res) => {
   const name = req.query.name;
 
   const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 3;
+  // const limit = parseInt(req.query.limit) || 3;
 
   //Busqueda por Nombre -------------------------------------------------------------------------------------------------------
   if (name) {
@@ -25,21 +27,22 @@ router.get("/", async (req, res) => {
   } else {
     // Data Paginada ----------------------------------------------------------------------------------------------------
     try {
-      const allBooks = await Books.findAll({
-        offset: (page - 1) * limit,
-        limit: limit,
-
+      const itemByPage = 4;
+      const offset = (page - 1) * itemByPage;
+      const { count, rows } = await Books.findAndCountAll({
+        limit: itemByPage,
+        offset,
         //Ejemplo  localhost:3001/book?page=2
       });
       const totalbook = await Books.count();
-      const PaginadoData = {
-        allBooks,
-        totalbook,
-        totalPage: Math.ceil(totalbook / limit),
-        currentPage: page,
-      };
+      // const PaginadoData = {
+      //   allBooks,
+      //   totalbook,
+      //   totalPage: Math.ceil(totalbook / limit),
+      //   currentPage: page,
+      // };
 
-      res.status(200).json(PaginadoData);
+      res.status(200).json({ count, rows });
 
       // throw Error("error base de datos");
     } catch (error) {
@@ -49,14 +52,37 @@ router.get("/", async (req, res) => {
 });
 // Fltros ----------------------------------------------------------------------------------------------------
 router.get("/filter", async (req, res) => {
-  const { author, gender, year } = req.query;
+  const { author, gender, year, page } = req.query;
   try {
-    const filtered = await filteredBooks(author, gender, year);
+    const filtered = await filteredBooks(author, gender, year, page);
     res.status(200).json(filtered);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 });
+
+// Ordenamiento -----------------------------------------------------------------------------------------------
+router.get("/booksort", async (req, res) => {
+  try {
+    const { value, organization, page } = req.query;
+
+    const booksSorts = await sortB(value, organization, page);
+    res.status(200).json(booksSorts);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
+//autores,años,generos-----------------------------------------------------------------------------------------
+router.get("/author-year-gender", async (req, res) => {
+  try {
+    const filters = await filtersAutYearGen();
+    res.status(200).json(filters);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
 // Details ----------------------------------------------------------------------------------------------------
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
