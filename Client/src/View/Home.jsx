@@ -4,7 +4,8 @@ import FormSelect from "../component/FormSelect/FormSelect";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setBook, setBookCopia } from "../redux/reducers/Books/booksSlice";
-// import { useDispatch, useSelector } from "react-redux";
+
+
 
 function Home() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function Home() {
     <>
       <br />
       <FormSelect />
+      {/* <Paginado/> */}
       <Cards />
     </>
   );

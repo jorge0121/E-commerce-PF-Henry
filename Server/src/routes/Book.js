@@ -10,8 +10,9 @@ const { Books } = require("../db");
 router.get("/", async (req, res) => {
   //Query-----------------------------------------------------------------------------------------------------------------------
   const name = req.query.name;
-  const { page = 1, pageSize = 2 } = req.query; // paginado max 2 (pageSize)
-  const offset = (page - 1) * pageSize;
+
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 3;
 
   //Busqueda por Nombre -------------------------------------------------------------------------------------------------------
   if (name) {
@@ -25,15 +26,22 @@ router.get("/", async (req, res) => {
     // Data Paginada ----------------------------------------------------------------------------------------------------
     try {
       const allBooks = await Books.findAll({
+        offset: (page - 1) * limit,
+        limit: limit,
+
         //Ejemplo  localhost:3001/book?page=2
-        // offset,
-        // limit: parseInt(pageSize)
       });
-      if (allBooks) {
-        res.status(200).json(allBooks);
-      } else {
-        throw Error("error base de datos");
-      }
+      const totalbook = await Books.count();
+      const PaginadoData = {
+        allBooks,
+        totalbook,
+        totalPage: Math.ceil(totalbook / limit),
+        currentPage: page,
+      };
+
+      res.status(200).json(PaginadoData);
+
+      // throw Error("error base de datos");
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
@@ -73,7 +81,7 @@ router.post("/bulke", async (req, res) => {
     res.status(201).json(created);
   } catch (error) {
     res.status(404).json(error.message);
-    console.log('error', error)
+    console.log("error", error);
   }
 });
 
