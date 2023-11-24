@@ -12,9 +12,13 @@ import {
 
 function FormSelect() {
   const dispatch = useDispatch();
+
+  const { dataA, dataY, dataG } = useSelector((state) => state.book);
   const { author, year, gender, value, organization, page } = useSelector(
     (state) => state.bookFilter
   );
+
+  const { sortOption } = Filter();
   const {
     handlerFilter,
     handlerAutorChange,
@@ -23,8 +27,6 @@ function FormSelect() {
     handlerSortChange,
     handlerSort,
   } = FilterHandler();
-  const { dataA, dataY, dataG } = useSelector((state) => state.book);
-  const { sortOption } = Filter();
 
   const [isAuthor, setIsAuthor] = useState(true);
   const [isYear, setIsYear] = useState(true);
@@ -66,12 +68,15 @@ function FormSelect() {
           Autor
         </Checkbox> */}
       {author ? (
-        <Checkbox
-          checked={author}
-          onChange={() => dispatch(setBookAuthor({ author: "" }))}
-        >
-          {author}
-        </Checkbox>
+        <>
+          <Checkbox
+            checked={author}
+            onChange={() => dispatch(setBookAuthor({ author: "" }))}
+          >
+            {author}
+          </Checkbox>{" "}
+          <br />
+        </>
       ) : null}
       <span>Año</span>
       <Select
@@ -89,12 +94,15 @@ function FormSelect() {
           Año
         </Checkbox> */}
       {year ? (
-        <Checkbox
-          checked={year}
-          onChange={() => dispatch(setBookAño({ year: "" }))}
-        >
-          {year}
-        </Checkbox>
+        <>
+          <Checkbox
+            checked={year}
+            onChange={() => dispatch(setBookAño({ year: "" }))}
+          >
+            {year}
+          </Checkbox>
+          <br />
+        </>
       ) : null}
       <span>Genero</span>
       <Select
@@ -112,20 +120,24 @@ function FormSelect() {
           Genero
         </Checkbox> */}
       {gender ? (
-        <Checkbox
-          checked={gender}
-          onChange={() => dispatch(setBookGenero({ gender: "" }))}
-        >
-          {gender}
-        </Checkbox>
+        <>
+          <Checkbox
+            checked={gender}
+            onChange={() => dispatch(setBookGenero({ gender: "" }))}
+          >
+            {gender}
+          </Checkbox>
+          <br />
+        </>
       ) : null}
+
       <button
         className="filterButton"
         onClick={handlerFilter}
         disabled={author || year || gender ? false : true}
       >
         Filtrar
-      </button>{" "}
+      </button>
       <br />
       <span>Ordenar por...</span>
       <Select
