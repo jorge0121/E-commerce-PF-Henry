@@ -30,7 +30,7 @@ function Home() {
             const totalPages = Math.ceil(data.count / 4);
             dispatch(setTotalData(totalPages));
             dispatch(setBook(data.rows));
-            dispatch(setBookCopia(data.rows));
+            // dispatch(setBookCopia(data.rows));
           }
         } catch (error) {
           console.log("error", error);

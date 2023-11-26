@@ -4,13 +4,11 @@ module.exports = (database) => {
     "Users",
     {
       id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
         primaryKey: true,
-      }, 
+      },
       name: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
       email: {
@@ -18,11 +16,10 @@ module.exports = (database) => {
         unique: true,
         allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
+      // password: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
     },
     {
       timestamps: false,
