@@ -28,9 +28,9 @@ function FormSelect() {
     handlerSort,
   } = FilterHandler();
 
-  const [isAuthor, setIsAuthor] = useState(true);
-  const [isYear, setIsYear] = useState(true);
-  const [isGender, setIsGender] = useState(true);
+  // const [isAuthor, setIsAuthor] = useState(true);
+  // const [isYear, setIsYear] = useState(true);
+  // const [isGender, setIsGender] = useState(true);
 
   useEffect(() => {
     if (value && organization) {

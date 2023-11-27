@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./NavBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setBook } from "../../redux/reducers/Books/booksSlice";
+import { setBook,setTotalData } from "../../redux/reducers/Books/booksSlice";
 import axios from "axios";
 
 const Navbar = () => {
@@ -16,6 +16,7 @@ const Navbar = () => {
       );
       if (data) {
         dispatch(setBook(data));
+        dispatch(setTotalData(1));
       }
     } catch (error) {
       console.log("error", error);

@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setBook,
-  setBookCopia,
   setDataA,
   setDataY,
   setDataG,
@@ -18,6 +17,8 @@ function Home() {
   const { author, year, gender, value, organization, page } = useSelector(
     (state) => state.bookFilter
   );
+  const { totalData, books } = useSelector((state) => state.book);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,9 +61,35 @@ function Home() {
       <br />
       <FormSelect />
       <Paginado />
-      <div className="containerB">
-        <Cards />
-      </div>
+      {books.length === 0 && totalData === 1 ? (
+        <>
+          <h3>Lo sentimos, al momento no contamos con ese libro</h3>
+          <h2>🥲</h2>
+        </>
+      ) : books.length === 0 && (author || year || gender) ? (
+        <>
+          <h3>
+            Lo sentimos, al momento no contamos con libros que tengan esas
+            características
+          </h3>
+          <h2>🥲</h2>
+        </>
+      ) : (
+        <div className="containerB">
+          <Cards />
+        </div>
+      )}
+
+      {/* {books.length === 0 && totalData === 1 ? (
+        <>
+          <h3>Lo sentimos, al momento no contamos con ese libro</h3>
+          <h2>🥲</h2>
+        </>
+      ) : (
+        <div className="containerB">
+          <Cards />
+        </div>
+      )} */}
     </>
   );
 }

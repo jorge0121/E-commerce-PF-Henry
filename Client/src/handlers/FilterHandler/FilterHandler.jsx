@@ -66,8 +66,7 @@ export function FilterHandler() {
     }
   };
 
-  const handlerFilter = async (event) => {
-    // event.preventDefault();
+  const handlerFilter = async () => {
     try {
       const { data } = await axios(
         `http://localhost:3001/book/filter?author=${author}&year=${year}&gender=${gender}&page=${page}`
