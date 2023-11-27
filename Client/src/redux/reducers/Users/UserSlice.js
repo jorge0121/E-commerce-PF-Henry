@@ -17,14 +17,46 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
     },
-    // setNombre: (state, action) => {
-    // },
-    // setEmail: (state, action) => {
-    // },
+
     setUserBooks: (state, action) => {
-      state.userBooks = [...state.userBooks, action.payload.userBooks];
+      const { book } = action.payload;
+      const existingBook = state.userBooks.find((b) => b.id === book.id);
+
+      if (existingBook) {
+        existingBook.quantity += 1;
+      } else {
+        state.userBooks.push({ ...book, quantity: 1 });
+      }
+
       state.totalBooks += 1;
     },
+
+    removeUserBooks: (state, action) => {
+      const bookId = action.payload;
+
+      state.totalBooks -= 1;
+      state.userBooks = state.userBooks.filter((book) => book.id !== bookId);
+    },
+
+    updateUserBooks: (state, action) => {
+      const { book } = action.payload;
+      const existingBookIndex = state.userBooks.findIndex(
+        (b) => b.id === book.id
+      );
+
+      if (existingBookIndex !== -1) {
+        const existingBook = state.userBooks[existingBookIndex];
+
+        existingBook.quantity -= 1;
+        if (existingBook.quantity === 0) {
+          state.userBooks.splice(existingBookIndex, 1);
+        }
+
+        state.totalBooks -= 1;
+      }
+    },
+
+    //borrar carrito
     unSetUserBooks: (state) => {
       state.userBooks = [];
       state.totalBooks = 0;
@@ -43,10 +75,10 @@ export const userSlice = createSlice({
 
 export const {
   setUser,
-  //   setNombre,
-  //   setEmail,
   setUserBooks,
   unSetUserBooks,
+  removeUserBooks,
+  updateUserBooks,
   unSetUser,
 } = userSlice.actions;
 

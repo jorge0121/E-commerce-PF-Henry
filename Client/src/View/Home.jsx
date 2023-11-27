@@ -1,3 +1,4 @@
+import "./Home.css"
 import axios from "axios";
 import Cards from "../component/Cards/Cards";
 import FormSelect from "../component/FormSelect/FormSelect";
@@ -59,7 +60,9 @@ function Home() {
       <br />
       <FormSelect />
       <Paginado />
-      <Cards />
+      <div className="containerB">
+        <Cards />
+      </div>
     </>
   );
 }

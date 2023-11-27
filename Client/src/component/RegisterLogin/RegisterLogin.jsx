@@ -76,7 +76,7 @@ function RegisterLogin() {
     <>
       {name ? (
         <>
-          <br />
+          <hr />
           <h3>Bienvenido, {name}</h3>
           <button onClick={logoutHandler}>Logout</button>
           <hr />
