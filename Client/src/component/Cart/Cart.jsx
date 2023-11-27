@@ -10,7 +10,7 @@ function Cart() {
   return (
     <>
       {userBooks.length === 0 ? (
-        <h1> Todavia no tienes libros agregados al carrito  </h1>
+        <h1> Todavia no tienes libros agregados al carrito </h1>
       ) : (
         <>
           <ul>
@@ -18,9 +18,9 @@ function Cart() {
               <div key={book.id}>
                 <Link to={`/detail/${book.id}`}>
                   <li>
-                    Titulo: {book.title} Autor: {book.author} Precio:{" "}
+                    Titulo: {book.title} Autor: {book.author} Precio:
                     {book.orice}
-                    Cantidad: {book.quantity}
+                    <h3>Cantidad: {book.quantity}</h3>
                   </li>
                 </Link>
                 <button

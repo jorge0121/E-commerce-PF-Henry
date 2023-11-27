@@ -1,4 +1,4 @@
-import "./Home.css"
+import "./Home.css";
 import axios from "axios";
 import Cards from "../component/Cards/Cards";
 import FormSelect from "../component/FormSelect/FormSelect";
