@@ -6,8 +6,8 @@ import { setBook,setTotalData } from "../../redux/reducers/Books/booksSlice";
 import axios from "axios";
 
 const Navbar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = async () => {
     try {

@@ -79,17 +79,6 @@ function Home() {
           <Cards />
         </div>
       )}
-
-      {/* {books.length === 0 && totalData === 1 ? (
-        <>
-          <h3>Lo sentimos, al momento no contamos con ese libro</h3>
-          <h2>🥲</h2>
-        </>
-      ) : (
-        <div className="containerB">
-          <Cards />
-        </div>
-      )} */}
     </>
   );
 }
