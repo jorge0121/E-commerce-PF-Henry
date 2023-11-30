@@ -54,7 +54,7 @@ export function FilterHandler() {
     }
     try {
       const { data } = await axios(
-        `http://localhost:3001/book/booksort?value=${value}&organization=${organization}&page=${page}`
+        `https://server-pf.onrender.com/book/booksort?value=${value}&organization=${organization}&page=${page}`
       );
       if (data) {
         const totalPages = Math.ceil(data.count / 4);
@@ -69,7 +69,7 @@ export function FilterHandler() {
   const handlerFilter = async () => {
     try {
       const { data } = await axios(
-        `http://localhost:3001/book/filter?author=${author}&year=${year}&gender=${gender}&page=${page}`
+        `https://server-pf.onrender.com/book/filter?author=${author}&year=${year}&gender=${gender}&page=${page}`
       );
       if (data) {
         const totalPages = Math.ceil(data.count / 4);

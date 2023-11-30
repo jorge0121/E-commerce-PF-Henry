@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleSearch = async () => {
     try {
       const { data } = await axios(
-        `http://localhost:3001/book?name=${searchTerm}`
+        `https://server-pf.onrender.com/book?name=${searchTerm}`
       );
       if (data) {
         dispatch(setBook(data));

@@ -11,8 +11,8 @@ import {
 } from "firebase/auth";
 import axios from "axios";
 
-//http://localhost:3001/user?page=1  GET para admins
-//http://localhost:3001/comment?1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2  modificar usuarios
+//https://server-pf.onrender.com/user?page=1  GET para admins
+//https://server-pf.onrender.com/comment?1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2  modificar usuarios
 
 function RegisterLogin() {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ function RegisterLogin() {
           const id = userId;
           const name = userNombre;
           const email = userEmail;
-          await axios(`http://localhost:3001/user/`, id, name, email);
+          await axios(`https://server-pf.onrender.com/user/`, id, name, email);
         } catch (error) {
           console.log("errorAxios", error);
         }
@@ -70,7 +70,7 @@ function RegisterLogin() {
         const id = user.user.uid;
         const name = user.user.displayName;
         const email = user.user.email;
-        const { data } = await axios(`http://localhost:3001/user/client`);
+        const { data } = await axios(`hhttps://server-pf.onrender.com//user/client`);
         if (data) {
           const admin = data[0].admin;
           dispatch(setUser({ id, name, email, admin }));
