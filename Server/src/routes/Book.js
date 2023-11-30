@@ -14,7 +14,6 @@ router.get("/", async (req, res) => {
   const name = req.query.name;
 
   const page = parseInt(req.query.page) || 1;
-  // const limit = parseInt(req.query.limit) || 3;
 
   //Busqueda por Nombre -------------------------------------------------------------------------------------------------------
   if (name) {
@@ -32,15 +31,7 @@ router.get("/", async (req, res) => {
       const { count, rows } = await Books.findAndCountAll({
         limit: itemByPage,
         offset,
-        //Ejemplo  localhost:3001/book?page=2
       });
-      const totalbook = await Books.count();
-      // const PaginadoData = {
-      //   allBooks,
-      //   totalbook,
-      //   totalPage: Math.ceil(totalbook / limit),
-      //   currentPage: page,
-      // };
 
       res.status(200).json({ count, rows });
 
@@ -50,6 +41,7 @@ router.get("/", async (req, res) => {
     }
   }
 });
+
 // Fltros ----------------------------------------------------------------------------------------------------
 router.get("/filter", async (req, res) => {
   const { author, gender, year, page } = req.query;

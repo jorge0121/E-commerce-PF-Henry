@@ -10,6 +10,9 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+//http://localhost:3001/user?page=1
+//http://localhost:3001/comment/1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2
+
 function RegisterLogin() {
   const dispatch = useDispatch();
   const { name } = useSelector((state) => state.user);
@@ -159,9 +162,9 @@ function RegisterLogin() {
               />
               <br />
               <button onClick={loginHandler}>Login</button>
+              <br />
             </>
           )}
-          <br />
           <button
             onClick={() => {
               setIngresar(!ingresar);

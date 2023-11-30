@@ -36,6 +36,7 @@ module.exports = (database) => {
       },
       active: {
         type: DataTypes.BOOLEAN,
+        defaultValue:true,
         allowNull: false,
       },
       description: {

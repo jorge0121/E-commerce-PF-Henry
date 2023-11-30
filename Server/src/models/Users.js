@@ -4,7 +4,8 @@ module.exports = (database) => {
     "Users",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       name: {
@@ -16,10 +17,10 @@ module.exports = (database) => {
         unique: true,
         allowNull: false,
       },
-      // password: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       timestamps: false,
