@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const users = require("../handlers/users");
+const userClient = require("../handlers/userClient");
 const userCreated = require("../handlers/userCreated");
 const updatedUser = require("../handlers/updatedUser");
 
@@ -15,12 +16,20 @@ routerUser.get("/", async (req, res) => {
   }
 });
 
+routerUser.get("/client", async (req, res) => {
+  try {
+    const user = await userClient();
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
 routerUser.post("/", async (req, res) => {
   try {
-    const { id, name, email } = req.body;
-    console.log('id', id)
+    const { id, name, email, admin } = req.body;
 
-    const newUser = await userCreated({ id, name, email });
+    const newUser = await userCreated({ id, name, email, admin });
     res.status(201).json(newUser);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -29,10 +38,13 @@ routerUser.post("/", async (req, res) => {
 
 routerUser.put("/update/:id", async (req, res) => {
   try {
+    const { userId } = req.query;
     const { id } = req.params;
     const user = req.body;
-    const userUpdated = await updatedUser(id, user);
-    res.status(201).json(userUpdated);
+    if (userId) {
+      const userUpdated = await updatedUser(id, user, userId);
+      res.status(201).json(userUpdated);
+    }
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

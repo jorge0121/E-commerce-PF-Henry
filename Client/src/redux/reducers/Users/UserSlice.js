@@ -4,6 +4,7 @@ const initialState = {
   id: "",
   name: "",
   email: "",
+  admin: null,
   userBooks: [],
   totalBooks: 0,
 };
@@ -16,6 +17,7 @@ export const userSlice = createSlice({
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.email = action.payload.email;
+      state.admin = action.payload.admin;
     },
 
     setUserBooks: (state, action) => {

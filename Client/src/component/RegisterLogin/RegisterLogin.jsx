@@ -9,9 +9,10 @@ import {
   signOut,
   signInWithPopup,
 } from "firebase/auth";
+import axios from "axios";
 
-//http://localhost:3001/user?page=1
-//http://localhost:3001/comment/1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2
+//http://localhost:3001/user?page=1  GET para admins
+//http://localhost:3001/comment?1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2  modificar usuarios
 
 function RegisterLogin() {
   const dispatch = useDispatch();
@@ -39,6 +40,14 @@ function RegisterLogin() {
         const userNombre = credentials.user.displayName;
         const userEmail = credentials.user.email;
         dispatch(setUser({ id: userId, name: userNombre, email: userEmail }));
+        try {
+          const id = userId;
+          const name = userNombre;
+          const email = userEmail;
+          await axios(`http://localhost:3001/user/`, id, name, email);
+        } catch (error) {
+          console.log("errorAxios", error);
+        }
         if (name) {
           setEmailRegistrer("");
           setPasswordRegistrer("");
@@ -58,10 +67,14 @@ function RegisterLogin() {
         passwordLogin
       );
       if (user) {
-        const userId = user.user.uid;
-        const userNombre = user.user.displayName;
-        const userEmail = user.user.email;
-        dispatch(setUser({ id: userId, name: userNombre, email: userEmail }));
+        const id = user.user.uid;
+        const name = user.user.displayName;
+        const email = user.user.email;
+        const { data } = await axios(`http://localhost:3001/user/client`);
+        if (data) {
+          const admin = data[0].admin;
+          dispatch(setUser({ id, name, email, admin }));
+        }
         if (name) {
           setEmailLogin("");
           setPasswordLogin("");
@@ -106,7 +119,7 @@ function RegisterLogin() {
             <>
               <hr />
               <h2>REGISTRARSE</h2>
-              <label htmlFor="emailRegis">Email: </label>
+              <label htmlFor="emailRegis">Correo: </label>
               <input
                 id="emailRegis"
                 type="text"
@@ -115,7 +128,7 @@ function RegisterLogin() {
                   setEmailRegistrer(event.target.value);
                 }}
               />
-              <label htmlFor="passwordRegis">Password: </label>
+              <label htmlFor="passwordRegis">Contraseña: </label>
               <input
                 id="passwordRegis"
                 type="password"
@@ -141,8 +154,8 @@ function RegisterLogin() {
           ) : (
             <>
               <hr />
-              <h2>LOGIN</h2>
-              <label htmlFor="emailLog">Email: </label>
+              <h2>INGRESAR</h2>
+              <label htmlFor="emailLog">Correo: </label>
               <input
                 id="emailLog"
                 type="text"
@@ -151,7 +164,7 @@ function RegisterLogin() {
                   setEmailLogin(event.target.value);
                 }}
               />
-              <label htmlFor="passwordLog">Password: </label>
+              <label htmlFor="passwordLog">Contraseña: </label>
               <input
                 id="passwordLog"
                 type="password"
@@ -161,7 +174,7 @@ function RegisterLogin() {
                 }}
               />
               <br />
-              <button onClick={loginHandler}>Login</button>
+              <button onClick={loginHandler}>Ingresar</button>
               <br />
             </>
           )}
@@ -170,7 +183,7 @@ function RegisterLogin() {
               setIngresar(!ingresar);
             }}
           >
-            {ingresar ? "Volver" : "Login con email"}
+            {ingresar ? "Volver" : "Ingresar con correo"}
           </button>
           <hr />
         </>
