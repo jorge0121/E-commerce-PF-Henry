@@ -28,7 +28,7 @@ module.exports = (database) => {
         type: DataTypes.STRING,
       },
       price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       pages: {

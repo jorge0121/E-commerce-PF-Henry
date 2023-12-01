@@ -17,8 +17,9 @@ routerUser.get("/", async (req, res) => {
 });
 
 routerUser.get("/client", async (req, res) => {
+  const { id } = req.query;
   try {
-    const user = await userClient();
+    const user = await userClient(id);
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ error: error.message });

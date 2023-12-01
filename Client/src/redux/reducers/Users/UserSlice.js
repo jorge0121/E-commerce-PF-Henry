@@ -4,7 +4,7 @@ const initialState = {
   id: "",
   name: "",
   email: "",
-  admin: null,
+  admin: false,
   userBooks: [],
   totalBooks: 0,
 };
@@ -69,6 +69,7 @@ export const userSlice = createSlice({
       state.id = "";
       state.name = "";
       state.email = "";
+      state.admin = false;
       state.userBooks = [];
       state.totalBooks = 0;
     },

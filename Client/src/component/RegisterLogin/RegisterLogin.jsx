@@ -70,10 +70,14 @@ function RegisterLogin() {
         const id = user.user.uid;
         const name = user.user.displayName;
         const email = user.user.email;
-        const { data } = await axios(`hhttps://server-pf.onrender.com//user/client`);
-        if (data) {
-          const admin = data[0].admin;
-          dispatch(setUser({ id, name, email, admin }));
+        if (id) {
+          const { data } = await axios(
+            `https://server-pf.onrender.com/user/client?id=${id}`
+          );
+          if (data) {
+            const admin = data.admin;
+            dispatch(setUser({ id, name, email, admin }));
+          }
         }
         if (name) {
           setEmailLogin("");
@@ -89,10 +93,18 @@ function RegisterLogin() {
     try {
       const user = await signInWithPopup(auth, provider);
       if (user) {
-        const userId = user.user.uid;
-        const userNombre = user.user.displayName;
-        const userEmail = user.user.email;
-        dispatch(setUser({ id: userId, name: userNombre, email: userEmail }));
+        const id = user.user.uid;
+        const name = user.user.displayName;
+        const email = user.user.email;
+        if (id) {
+          const { data } = await axios(
+            `https://server-pf.onrender.com/user/client?id=${id}`
+          );
+          if (data) {
+            const admin = data.admin;
+            dispatch(setUser({ id, name, email, admin }));
+          }
+        }
       }
     } catch (error) {
       console.log("error.message", error.message);
