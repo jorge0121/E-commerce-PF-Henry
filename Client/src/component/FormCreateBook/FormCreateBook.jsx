@@ -16,9 +16,7 @@ const FormCreateBook = () => {
     
     
     try {
-              const url = await uploadImage(file);
-              
-              
+      const url = await uploadImage(file);        
       // Realizo la petición Axios con los datos del formulario
       const arrayData = [data];
       arrayData[0].image = url
@@ -26,9 +24,9 @@ const FormCreateBook = () => {
       
       const response = await axios.post('https://server-pf.onrender.com/book/bulke', arrayData);
       
-     
       // Limpio el formulario después del éxito
-      alert("Enviando Datos..")
+     
+      alert("Enviando los Datos..")
       reset();
     } catch (error) {
       if (error.response) {
