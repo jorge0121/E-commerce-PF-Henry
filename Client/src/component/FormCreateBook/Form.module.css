@@ -1,0 +1,13 @@
+.container{
+    border: 5px solid blue;
+    padding: 15px;
+    width: 300px;
+    height: auto;
+    border-radius: 15px;
+    margin-left: 39%;
+    
+   }
+   h2{
+       text-align: center;
+   }
+   
