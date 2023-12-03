@@ -1,8 +1,8 @@
-import React from "react";
+import RegisterLogin from "../RegisterLogin/RegisterLogin";
 import styles from "./NavBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setBook,setTotalData } from "../../redux/reducers/Books/booksSlice";
+import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import axios from "axios";
 
 const Navbar = () => {
@@ -47,6 +47,9 @@ const Navbar = () => {
         </li>
         <li>
           <a href="/carrito">Carrito</a>
+        </li>
+        <li className={styles.login}>
+          <RegisterLogin />
         </li>
       </ul>
     </nav>

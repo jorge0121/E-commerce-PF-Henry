@@ -11,8 +11,9 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import {getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import {v4} from 'uuid'
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
+
 const firebaseConfig = {
   apiKey: "AIzaSyD8YaXo--oOX3q7PTrWxoSPMD4mpj_nwkk",
   authDomain: "pf-libros.firebaseapp.com",
@@ -30,12 +31,9 @@ export { auth, provider };
 
 export const storage = getStorage(app);
 
-export async function uploadImage(file){
-
-  const storageRef = ref(storage, v4())
-  await uploadBytes(storageRef,file)
-  const URL = await getDownloadURL(storageRef)
-return URL;
-
- 
+export async function uploadImage(file) {
+  const storageRef = ref(storage, v4());
+  await uploadBytes(storageRef, file);
+  const URL = await getDownloadURL(storageRef);
+  return URL;
 }

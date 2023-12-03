@@ -44,6 +44,12 @@
   align-items: center;
 }
 
+.login {
+  position: relative;
+  top: -18px;
+}
+
+
 /* Estilo del input de búsqueda */
 .searchinput {
   padding: 8px;

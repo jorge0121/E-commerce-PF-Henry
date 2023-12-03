@@ -19,7 +19,7 @@ function Cart() {
                 <Link to={`/detail/${book.id}`}>
                   <li>
                     Titulo: {book.title} Autor: {book.author} Precio:
-                    {book.orice}
+                    {book.price}
                     <h3>Cantidad: {book.quantity}</h3>
                   </li>
                 </Link>

@@ -1,3 +1,6 @@
+import "./RegisterLogin.css";
+import "bulma/css/bulma.css";
+import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, unSetUser } from "../../redux/reducers/Users/UserSlice";
@@ -9,7 +12,6 @@ import {
   signOut,
   signInWithPopup,
 } from "firebase/auth";
-import axios from "axios";
 
 //https://server-pf.onrender.com/user?page=1  GET para admins
 //https://server-pf.onrender.com/comment?1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2  modificar usuarios
@@ -24,6 +26,9 @@ function RegisterLogin() {
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [ingresar, setIngresar] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+
+  const active = isModal ? "is-active" : "";
 
   const registerHandler = async () => {
     try {
@@ -120,84 +125,112 @@ function RegisterLogin() {
     <>
       {name ? (
         <>
-          <hr />
-          <h3>Bienvenido, {name}</h3>
-          <button onClick={logoutHandler}>Logout</button>
-          <hr />
+          <h3 className="bienvenido">Bienvenido, {name} </h3>
+          <button className="buttonLogout" onClick={logoutHandler}>
+            Logout
+          </button>
         </>
       ) : (
         <>
-          {!ingresar ? (
-            <>
-              <hr />
-              <h2>REGISTRARSE</h2>
-              <label htmlFor="emailRegis">Correo: </label>
-              <input
-                id="emailRegis"
-                type="text"
-                name="email"
-                onChange={(event) => {
-                  setEmailRegistrer(event.target.value);
-                }}
-              />
-              <label htmlFor="passwordRegis">Contraseña: </label>
-              <input
-                id="passwordRegis"
-                type="password"
-                name="password"
-                onChange={(event) => {
-                  setPasswordRegistrer(event.target.value);
-                }}
-              />
-              <label htmlFor="nombreRegis">Nombre: </label>
-              <input
-                id="nombreRegis"
-                type="nombre "
-                name="nombre "
-                onChange={(event) => {
-                  setNameRegistrer(event.target.value);
-                }}
-              />
-              <br />
-              <button onClick={registerHandler}>Registrarse</button> <br />
-              <button onClick={loginWithGoogle}>Ingresar con Google</button>
-              <h4>O</h4>
-            </>
-          ) : (
-            <>
-              <hr />
-              <h2>INGRESAR</h2>
-              <label htmlFor="emailLog">Correo: </label>
-              <input
-                id="emailLog"
-                type="text"
-                name="email"
-                onChange={(event) => {
-                  setEmailLogin(event.target.value);
-                }}
-              />
-              <label htmlFor="passwordLog">Contraseña: </label>
-              <input
-                id="passwordLog"
-                type="password"
-                name="password"
-                onChange={(event) => {
-                  setPasswordLogin(event.target.value);
-                }}
-              />
-              <br />
-              <button onClick={loginHandler}>Ingresar</button>
-              <br />
-            </>
-          )}
           <button
+            className="buttonLogin"
             onClick={() => {
-              setIngresar(!ingresar);
+              setIsModal(!isModal);
             }}
           >
-            {ingresar ? "Volver" : "Ingresar con correo"}
+            Ingresar
           </button>
-          <hr />
+          <div className={`modal ${active}`}>
+            <div className="modal-background" />
+            <div className="modal-card">
+              <button
+                onClick={() => {
+                  setIsModal(!isModal);
+                  setIngresar(false);
+                }}
+                className="delete"
+                aria-label="close"
+              />
+              {!ingresar ? (
+                <>
+                  <hr />
+                  <h2>REGISTRARSE</h2>
+                  <label htmlFor="emailRegis">Correo: </label>
+                  <input
+                    id="emailRegis"
+                    type="text"
+                    name="email"
+                    onChange={(event) => {
+                      setEmailRegistrer(event.target.value);
+                    }}
+                  />
+                  <label htmlFor="passwordRegis">Contraseña: </label>
+                  <input
+                    id="passwordRegis"
+                    type="password"
+                    name="password"
+                    onChange={(event) => {
+                      setPasswordRegistrer(event.target.value);
+                    }}
+                  />
+                  <label htmlFor="nombreRegis">Nombre: </label>
+                  <input
+                    id="nombreRegis"
+                    type="nombre "
+                    name="nombre "
+                    onChange={(event) => {
+                      setNameRegistrer(event.target.value);
+                    }}
+                  />
+                  <br />
+                  <button className="buttonLogin" onClick={registerHandler}>
+                    Registrarse
+                  </button>{" "}
+                  <br />
+                  <button className="buttonLogin" onClick={loginWithGoogle}>
+                    Ingresar con Google
+                  </button>
+                  <h4>O</h4>
+                </>
+              ) : (
+                <>
+                  <hr />
+                  <h2>INGRESAR</h2>
+                  <label htmlFor="emailLog">Correo: </label>
+                  <input
+                    id="emailLog"
+                    type="text"
+                    name="email"
+                    onChange={(event) => {
+                      setEmailLogin(event.target.value);
+                    }}
+                  />
+                  <label htmlFor="passwordLog">Contraseña: </label>
+                  <input
+                    id="passwordLog"
+                    type="password"
+                    name="password"
+                    onChange={(event) => {
+                      setPasswordLogin(event.target.value);
+                    }}
+                  />
+                  <br />
+                  <button className="buttonLogin" onClick={loginHandler}>
+                    Ingresar
+                  </button>
+                  <br />
+                </>
+              )}
+              <button
+                className="buttonLogin"
+                onClick={() => {
+                  setIngresar(!ingresar);
+                }}
+              >
+                {ingresar ? "Volver" : "Ingresar con correo"}
+              </button>
+            </div>
+          </div>
         </>
       )}
     </>

@@ -9,7 +9,6 @@
     "pages": "123",
     "active": true,
     "description": "ad"
-    
   },
   {
     "title": "Historias de Miedo Para Contar en la Oscuridad",
@@ -219,5 +218,116 @@
     "pages": 374,
     "active": true,
     "description": "Una competencia mortal en un futuro distópico."
+  },
+
+  {
+    "title": "Aventuras en el Espacio",
+    "author": "Elena Martínez",
+    "gender": "Ciencia ficción",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2021,
+    "price": 19.99,
+    "pages": 300,
+    "active": true,
+    "description": "Una emocionante aventura intergaláctica."
+  },
+  {
+    "title": "El Misterio del Bosque Encantado",
+    "author": "Carlos González",
+    "gender": "Misterio",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2019,
+    "price": 15.99,
+    "pages": 250,
+    "active": true,
+    "description": "Descubre los secretos ocultos en un bosque mágico."
+  },
+  {
+    "title": "Viaje al Pasado",
+    "author": "Isabel Ramírez",
+    "gender": "Historia",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 1875,
+    "price": 24.99,
+    "pages": 400,
+    "active": true,
+    "description": "Una historia que te transportará a otra época."
+  },
+  {
+    "title": "El Poder de la Magia",
+    "author": "Alberto Gómez",
+    "gender": "Fantasía",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2015,
+    "price": 22.99,
+    "pages": 350,
+    "active": true,
+    "description": "Descubre un mundo lleno de criaturas mágicas."
+  },
+  {
+    "title": "Amor Prohibido",
+    "author": "Laura Sánchez",
+    "gender": "Romance",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2020,
+    "price": 18.99,
+    "pages": 280,
+    "active": true,
+    "description": "Una historia de amor que desafía todas las barreras."
+  },
+  {
+    "title": "Misterios del Universo",
+    "author": "Javier López",
+    "gender": "Ciencia",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2030,
+    "price": 29.99,
+    "pages": 500,
+    "active": true,
+    "description": "Explora los enigmas del cosmos con este libro fascinante."
+  },
+  {
+    "title": "La Última Aventura",
+    "author": "Marta Fernández",
+    "gender": "Aventura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2017,
+    "price": 21.99,
+    "pages": 320,
+    "active": true,
+    "description": "El emocionante viaje de un héroe en su última misión."
+  },
+  {
+    "title": "Secretos del Pasado",
+    "author": "Antonio Pérez",
+    "gender": "Misterio",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 1990,
+    "price": 25.99,
+    "pages": 400,
+    "active": true,
+    "description": "Desentraña los misterios ocultos en la historia."
+  },
+  {
+    "title": "Aprendiendo a Volar",
+    "author": "Luisa Martínez",
+    "gender": "Autoayuda",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2022,
+    "price": 17.99,
+    "pages": 250,
+    "active": true,
+    "description": "Un libro inspirador sobre superar los desafíos de la vida."
+  },
+  {
+    "title": "Cazadores de Tesoros",
+    "author": "Roberto Soto",
+    "gender": "Aventura",
+    "image": "https://e7.pngegg.com/pngimages/214/391/png-clipart-book-cover-blue-books-s-blue-angle.png",
+    "year": 2014,
+    "price": 23.99,
+    "pages": 380,
+    "active": true,
+    "description": "Una emocionante búsqueda de tesoros perdidos."
   }
 ]
