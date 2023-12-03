@@ -133,7 +133,7 @@ function RegisterLogin() {
       ) : (
         <>
           <button
-            className="buttonLogin"
+            className="buttonIngresar"
             onClick={() => {
               setIsModal(!isModal);
             }}
