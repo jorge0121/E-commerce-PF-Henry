@@ -1,4 +1,5 @@
 import "./App.css";
+import "bulma/css/bulma.min.css";
 import Home from "./View/Home";
 import Cart from "./component/Cart/Cart";
 import Detail from "./View/Detail/Detail";
@@ -10,12 +11,12 @@ function App() {
   return (
     <>
       <NavBar />
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/carrito" element={<Cart />} />
-        <Route path="/bulke" element={<CreateBookView/>} />
+        <Route path="/bulke" element={<CreateBookView />} />
       </Routes>
     </>
   );
