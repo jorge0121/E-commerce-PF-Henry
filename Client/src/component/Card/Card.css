@@ -1,16 +1,39 @@
 .card {
-  border: solid 1px gray;
+ 
+  /* border: solid 1px gray; */
   border-radius: 10px;
-  position: relative;
-  width: 300px;
-  height: max-content;
+  /* position: relative; */
+  width: 280px;
+  height:550px;
   padding: 10px;
   margin: 20px;
-  text-align: center;
+  justify-content: center;
+
   margin-bottom: 40px;
+  transition: transform 0.5s;
+  
 }
 
-.card img {
+/* .card img {
   width: 150px;
   height: 150px;
+} */
+.card-content{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+ 
+ 
+}
+.card img{
+  width: 250px;
+  height: 350px;
+}
+.card-tarjeta{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  
+}
+.card:hover{
+  transform: scale(1.1);
+
 }

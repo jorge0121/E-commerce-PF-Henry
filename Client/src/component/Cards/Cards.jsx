@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import CardBook from "../Card/Card";
 import { useSelector } from "react-redux";
 
 function Cards() {
@@ -7,7 +7,7 @@ function Cards() {
   return (
     <>
       {books.map((book) => (
-        <Card key={book.id} book={book} />
+        <CardBook key={book.id} book={book} />
       ))}
     </>
   );

@@ -1,4 +1,4 @@
-import "bulma/css/bulma.min.css";
+
 import styles from "./Form.module.css";
 import axios from "axios";
 import { useForm } from "react-hook-form";
