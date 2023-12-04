@@ -32,9 +32,6 @@ function CardBook({ book }) {
           {userBooks.find(book => book.id === id)
             ? "Remover del "
             : "Agregar al "}
-          <span className="icon">
-            <i className="fab fa-github"></i>
-          </span>
           carrito
         </button>
       </div>

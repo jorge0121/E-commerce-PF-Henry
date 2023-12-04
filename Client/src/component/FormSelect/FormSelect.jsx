@@ -13,9 +13,9 @@ import {
 function FormSelect() {
   const dispatch = useDispatch();
 
-  const { dataA, dataY, dataG } = useSelector((state) => state.book);
+  const { dataA, dataY, dataG } = useSelector(state => state.book);
   const { author, year, gender, value, organization, page } = useSelector(
-    (state) => state.bookFilter
+    state => state.bookFilter
   );
 
   const { sortOption } = Filter();
@@ -52,120 +52,117 @@ function FormSelect() {
   );
 
   return (
-    <>
-      <ul>
-        <li>
-          <span>Autor</span>
-          <Select
-            // isDisabled={isAuthor}
-            name="author"
-            value={author}
-            options={dataA}
-            onChange={handlerAutorChange}
-            className="select"
-          />
-          {/* <Checkbox
-          checked={!isAuthor}
-          onChange={() => setIsAuthor((state) => !state)}
-        >
-          Autor
-        </Checkbox> */}
-          {author ? (
-            <>
-              <Checkbox
+   
+    <ul className="selects columns is-multiline">
+      <li className="column is-one-third lista">
+        <div className="field">
+          <label className="label">Autor</label>
+          <div className="control">
+            <div className="select is-fullwidth">
+              <select className="select"
+                name="author"
+                value={author}
+                onChange={handlerAutorChange}
+              >
+                {dataA.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        {author && (
+          <div className="control">
+            <label className="checkbox">
+              <input
+                type="checkbox"
                 checked={author}
                 onChange={() => dispatch(setBookAuthor({ author: "" }))}
-              >
-                {author}
-              </Checkbox>{" "}
-              <br />
-            </>
-          ) : null}
-        </li>
-        <li>
-          <span>Año</span>
-          <Select
-            // isDisabled={isYear}
-            name="year"
-            value={year}
-            options={dataY}
-            onChange={handlerYearChange}
-            className="select"
-          />
-          {/* <Checkbox
-          checked={!isYear}
-          onChange={() => setIsYear((state) => !state)}
-        >
-          Año
-        </Checkbox> */}
-          {year ? (
-            <>
-              <Checkbox
+              />
+              {author}
+            </label>
+          </div>
+        )}
+      </li>
+  
+      <li className="column is-one-third lista">
+        <div className="field">
+          <label className="label">Año</label>
+          <div className="control">
+            <div className="select is-fullwidth">
+              <select name="year" value={year} onChange={handlerYearChange}>
+                {dataY.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        {year && (
+          <div className="control">
+            <label className="checkbox">
+              <input
+                type="checkbox"
                 checked={year}
                 onChange={() => dispatch(setBookAño({ year: "" }))}
+              />
+              {year}
+            </label>
+          </div>
+        )}
+      </li>
+  
+      <li className="column is-one-third lista">
+        <div className="field">
+          <label className="label">Género</label>
+          <div className="control">
+            <div className="select is-fullwidth">
+              <select
+                name="gender"
+                value={gender}
+                onChange={handlerGenderChange}
               >
-                {year}
-              </Checkbox>
-              <br />
-            </>
-          ) : null}
-        </li>
-        <li>
-          <span>Genero</span>
-          <Select
-            className="select"
-            // isDisabled={isGender}
-            name="gender"
-            value={gender}
-            options={dataG}
-            onChange={handlerGenderChange}
-          />
-          {/* <Checkbox
-          checked={!isGender}
-          onChange={() => setIsGender((state) => !state)}
-        >
-          Genero
-        </Checkbox> */}
-          {gender ? (
-            <>
-              <Checkbox
+                {dataG.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        {gender && (
+          <div className="control">
+            <label className="checkbox">
+              <input
+                type="checkbox"
                 checked={gender}
                 onChange={() => dispatch(setBookGenero({ gender: "" }))}
-              >
-                {gender}
-              </Checkbox>
-              <br />
-            </>
-          ) : null}
-        </li>
-        <button
-          className="filterButton"
-          onClick={handlerFilter}
-          disabled={author || year || gender ? false : true}
-        >
-          Filtrar
-        </button>
-      </ul>
-      <ul>
-        <br />
-        <li>
-          <span>Ordenar por...</span>
-          <Select
-            className="select"
-            name="sort"
-            options={sortOption}
-            onChange={handlerSortChange}
-          />
-          <button
-            className="filterButton"
-            onClick={handlerSort}
-            disabled={value && organization ? false : true}
-          >
-            Ordenar
-          </button>
-        </li>
-      </ul>
-    </>
+              />
+              {gender}
+            </label>
+          </div>
+        )}
+      </li>
+  
+      <li className="column is-full">
+        <div className="field">
+          <div className="control">
+            <button
+              className="button is-primary"
+              onClick={handlerFilter}
+              disabled={!author && !year && !gender}
+            >
+              Filtrar
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
   );
 }
 

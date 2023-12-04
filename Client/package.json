@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+   
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.2",
-   
     "bulma": "^0.9.4",
     "dotenv": "^16.3.1",
     "firebase": "^10.6.0",
