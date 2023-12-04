@@ -190,7 +190,7 @@ function RegisterLogin() {
                   <button className="buttonLogin" onClick={loginWithGoogle}>
                     Ingresar con Google
                   </button>
-                  <h4>O</h4>
+                  <h4 className="O">O</h4>
                 </>
               ) : (
                 <>
