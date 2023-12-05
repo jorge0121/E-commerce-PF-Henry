@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 function Cart() {
   const { userBooks, totalBooks } = useSelector((state) => state.user);
-  const { removeBookFromCart, addBookToCart, clearBookCart } = CartHandler();
+  const { removeBookFromCart, addBookToCart, clearBookCart,buyBooks } = CartHandler();
 
   const prices = [];
   const totalPrices = [];
@@ -18,7 +18,6 @@ function Cart() {
       totalPrices.push(realPrice);
     });
     setResultado(totalPrices.reduce((suma, numero) => suma + numero, 0));
-    console.log("resultado", resultado);
   }, [totalBooks]);
   return (
     <>
@@ -57,6 +56,7 @@ function Cart() {
           <span>Cantidad total: {totalBooks}</span>
           <h3>Total US$: {resultado} </h3>
           <button onClick={clearBookCart}>Limpiar carrito</button>
+          <button onClick={buyBooks}>Comprar ahora</button>
         </>
       )}
     </>

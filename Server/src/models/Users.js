@@ -25,8 +25,8 @@ module.exports = (database) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-      books: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+      idBooks: {
+        type: DataTypes.ARRAY( DataTypes.INTEGER ),
       },
     },
     {

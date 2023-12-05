@@ -28,19 +28,20 @@ routerUser.get("/client", async (req, res) => {
 
 routerUser.post("/", async (req, res) => {
   try {
-    const { id, name, email, admin } = req.body;
+    const { id, name, email, admin, idBooks } = req.body;
 
-    const newUser = await userCreated({ id, name, email, admin });
+    const newUser = await userCreated({ id, name, email, admin, idBooks });
     res.status(201).json(newUser);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 });
 
-routerUser.put("/updated/", async (req, res) => {
+routerUser.put("/update", async (req, res) => {
   try {
     const { userId } = req.query;
     const user = req.body;
+    console.log("user", user);
     if (userId) {
       const userUpdated = await updatedUser(user, userId);
       res.status(201).json(userUpdated);

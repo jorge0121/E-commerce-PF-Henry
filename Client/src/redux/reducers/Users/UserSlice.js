@@ -5,8 +5,10 @@ const initialState = {
   name: "",
   email: "",
   admin: false,
+  banned: false,
   userBooks: [],
   totalBooks: 0,
+  idBooks: [],
 };
 
 export const userSlice = createSlice({
@@ -18,6 +20,16 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.admin = action.payload.admin;
+      state.banned = action.payload.banned;
+    },
+
+    setIdBooks: (state, action) => {
+      const newIdBooks = action.payload.idBooks;
+      const uniqueNewIdBooks = newIdBooks.filter(
+        (id) => !state.idBooks.includes(id)
+      );
+
+      state.idBooks = [...state.idBooks, ...uniqueNewIdBooks];
     },
 
     setUserBooks: (state, action) => {
@@ -62,6 +74,7 @@ export const userSlice = createSlice({
     unSetUserBooks: (state) => {
       state.userBooks = [];
       state.totalBooks = 0;
+      // state.idBooks = [];
     },
 
     // este se utliza en el logout
@@ -70,6 +83,8 @@ export const userSlice = createSlice({
       state.name = "";
       state.email = "";
       state.admin = false;
+      state.banned = false;
+      state.idBooks = [];
       state.userBooks = [];
       state.totalBooks = 0;
     },
@@ -78,6 +93,7 @@ export const userSlice = createSlice({
 
 export const {
   setUser,
+  setIdBooks,
   setUserBooks,
   unSetUserBooks,
   removeUserBooks,

@@ -3,16 +3,19 @@
     "id": "LWj3ovAtgrQ702leRXBgLF4CMaR2",
     "name": "PF HENRY",
     "email": "pflibrosgrupo07@gmail.com",
-    "admin": true
+    "admin": true,
+    "idBooks": []
   },
   {
     "id": "mfQvgquS2JhWoBDk5AS8VsiOCFx1",
     "name": "claudio",
-    "email": "claudio@gmail.com"
+    "email": "claudio@gmail.com",
+    "idBooks": []
   },
   {
     "id": "3zQWlX9arNOqtVumz1x1CL3hQR03",
     "name": "cualquier cosa",
-    "email": "cualqueircosa@gmail.com"
+    "email": "cualqueircosa@gmail.com",
+    "idBooks": []
   }
 ]

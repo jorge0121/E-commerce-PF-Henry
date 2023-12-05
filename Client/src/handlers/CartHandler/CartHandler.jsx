@@ -1,14 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   setUserBooks,
+  setIdBooks,
   unSetUserBooks,
   removeUserBooks,
   updateUserBooks,
 } from "../../redux/reducers/Users/UserSlice";
+import axios from "axios";
 
 function CartHandler() {
   const dispatch = useDispatch();
-  const { userBooks } = useSelector((state) => state.user);
+  const { userBooks, id, email } = useSelector((state) => state.user);
   const books = useSelector((state) => state.book.books);
 
   const putOrRemoveBookToCart = (id) => {
@@ -38,11 +40,31 @@ function CartHandler() {
     dispatch(unSetUserBooks());
   };
 
+  const buyBooks = async () => {
+    const idBooks = userBooks.map((book) => book.id);
+    if (idBooks) {
+      dispatch(setIdBooks({ idBooks }));
+      if (id && email) {
+        try {
+          console.log("idBooks", idBooks);
+          await axios.put(
+            `https://server-pf.onrender.com/user/update?userId=${id}`,
+            { idBooks }
+          );
+        } catch (error) {
+          console.log("errorAxios", error);
+        }
+      }
+      dispatch(unSetUserBooks());
+    }
+  };
+
   return {
     putOrRemoveBookToCart,
     clearBookCart,
     removeBookFromCart,
     addBookToCart,
+    buyBooks,
   };
 }
 

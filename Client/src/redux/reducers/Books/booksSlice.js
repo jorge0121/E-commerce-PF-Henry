@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   books: [],
-  booksCopia: [],
   dataA: [],
   dataY: [],
   dataG: [],
@@ -15,9 +14,6 @@ export const bookSlice = createSlice({
   reducers: {
     setBook: (state, action) => {
       state.books = action.payload;
-    },
-    setBookCopia: (state, action) => {
-      state.booksCopia = action.payload;
     },
     setDataA: (state, action) => {
       state.dataA = action.payload;
@@ -34,12 +30,6 @@ export const bookSlice = createSlice({
   },
 });
 
-export const {
-  setBook,
-  setBookCopia,
-  setDataA,
-  setDataY,
-  setDataG,
-  setTotalData,
-} = bookSlice.actions;
+export const { setBook, setDataA, setDataY, setDataG, setTotalData } =
+  bookSlice.actions;
 export default bookSlice.reducer;

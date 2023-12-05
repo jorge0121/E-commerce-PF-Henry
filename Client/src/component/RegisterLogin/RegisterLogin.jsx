@@ -3,7 +3,11 @@ import "bulma/css/bulma.css";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser, unSetUser } from "../../redux/reducers/Users/UserSlice";
+import {
+  setUser,
+  setIdBooks,
+  unSetUser,
+} from "../../redux/reducers/Users/UserSlice";
 import { auth, provider } from "../../firebase-config";
 import {
   createUserWithEmailAndPassword,
@@ -14,7 +18,7 @@ import {
 } from "firebase/auth";
 
 //https://server-pf.onrender.com/user?page=1  ==>GET para admins
-//https://server-pf.onrender.com/user/updated?userId=ID DEL USUARIO A MODIFICAR ==>modificar usuarios
+//https://server-pf.onrender.com/user/update?userId=ID DEL USUARIO A MODIFICAR ==>modificar usuarios
 //https://server-pf.onrender.com/comment?bookId=ID DEL LIBRO&userId=ID DEL USUARIO QUE COMENTA  ==>post de comentarios
 //https://server-pf.onrender.com/book/update/:id ID DEL USUARIO A MODIFICAR (el id llega por params) ==>modificar libros
 
@@ -60,7 +64,7 @@ function RegisterLogin() {
             }
           );
         } catch (error) {
-          console.log("errorAxios", error);
+          console.log("errorAxios", error.message);
         }
         if (name) {
           setEmailRegistrer("");
@@ -85,12 +89,19 @@ function RegisterLogin() {
         const name = user.user.displayName;
         const email = user.user.email;
         if (id) {
-          const { data } = await axios(
-            `https://server-pf.onrender.com/user/client?id=${id}`
-          );
-          if (data) {
-            const admin = data.admin;
-            dispatch(setUser({ id, name, email, admin }));
+          try {
+            const { data } = await axios(
+              `https://server-pf.onrender.com/user/client?id=${id}`
+            );
+            if (data) {
+              const admin = data.admin;
+              const banned = data.banned;
+              const idBooks = data.idBooks;
+              dispatch(setUser({ id, name, email, admin, banned }));
+              dispatch(setIdBooks({ idBooks }));
+            }
+          } catch (error) {
+            console.log("errorAxios", error.message);
           }
         }
         if (name) {
@@ -111,12 +122,20 @@ function RegisterLogin() {
         const name = user.user.displayName;
         const email = user.user.email;
         if (id) {
-          const { data } = await axios(
-            `https://server-pf.onrender.com/user/client?id=${id}`
-          );
-          if (data) {
-            const admin = data.admin;
-            dispatch(setUser({ id, name, email, admin }));
+          try {
+            const { data } = await axios(
+              `https://server-pf.onrender.com/user/client?id=${id}`
+            );
+            if (data) {
+              console.log("data", data.idBooks);
+              const admin = data.admin;
+              const banned = data.banned;
+              const idBooks = data.idBooks;
+              dispatch(setUser({ id, name, email, admin, banned }));
+              dispatch(setIdBooks({ idBooks }));
+            }
+          } catch (error) {
+            console.log("errorAxios", error.message);
           }
         }
       }
