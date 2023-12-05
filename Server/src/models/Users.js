@@ -17,9 +17,16 @@ module.exports = (database) => {
         unique: true,
         allowNull: false,
       },
+      banned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
       admin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      books: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
     },
     {

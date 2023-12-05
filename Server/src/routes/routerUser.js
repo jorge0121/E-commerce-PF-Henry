@@ -37,13 +37,12 @@ routerUser.post("/", async (req, res) => {
   }
 });
 
-routerUser.put("/update/:id", async (req, res) => {
+routerUser.put("/updated/", async (req, res) => {
   try {
     const { userId } = req.query;
-    const { id } = req.params;
     const user = req.body;
     if (userId) {
-      const userUpdated = await updatedUser(id, user, userId);
+      const userUpdated = await updatedUser(user, userId);
       res.status(201).json(userUpdated);
     }
   } catch (error) {

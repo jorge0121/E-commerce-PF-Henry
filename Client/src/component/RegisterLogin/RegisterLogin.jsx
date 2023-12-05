@@ -13,8 +13,10 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-//https://server-pf.onrender.com/user?page=1  GET para admins
-//https://server-pf.onrender.com/comment?1?userId=TYD3igvyP8gfEdEqx9CVJC5g2Re2  modificar usuarios
+//https://server-pf.onrender.com/user?page=1  ==>GET para admins
+//https://server-pf.onrender.com/user/updated?userId=ID DEL USUARIO A MODIFICAR ==>modificar usuarios
+//https://server-pf.onrender.com/comment?bookId=ID DEL LIBRO&userId=ID DEL USUARIO QUE COMENTA  ==>post de comentarios
+//https://server-pf.onrender.com/book/update/:id ID DEL USUARIO A MODIFICAR (el id llega por params) ==>modificar libros
 
 function RegisterLogin() {
   const dispatch = useDispatch();
@@ -49,7 +51,6 @@ function RegisterLogin() {
           const id = userId;
           const name = userNombre;
           const email = userEmail;
-          console.log("id", id);
           const { data } = await axios.post(
             `https://server-pf.onrender.com/user`,
             {
@@ -58,7 +59,6 @@ function RegisterLogin() {
               email,
             }
           );
-          console.log("data", data);
         } catch (error) {
           console.log("errorAxios", error);
         }
