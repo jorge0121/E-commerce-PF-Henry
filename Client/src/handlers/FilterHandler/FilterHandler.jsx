@@ -16,13 +16,14 @@ export function FilterHandler() {
     (state) => state.bookFilter
   );
   const handlerAutorChange = (e) => {
-    dispatch(setBookAuthor({ author: e.value }));
+    dispatch(setBookAuthor({ author: e.target.value }));
   };
   const handlerYearChange = (e) => {
-    dispatch(setBookAño({ year: e.value }));
+    dispatch(setBookAño({ year: e.target.value }));
   };
   const handlerGenderChange = (e) => {
-    dispatch(setBookGenero({ gender: e.value }));
+    console.log("e", e);
+    dispatch(setBookGenero({ gender: e.target.value }));
   };
 
   const handlerSortChange = (e) => {

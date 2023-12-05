@@ -49,7 +49,16 @@ function RegisterLogin() {
           const id = userId;
           const name = userNombre;
           const email = userEmail;
-          await axios(`https://server-pf.onrender.com/user/`, id, name, email);
+          console.log("id", id);
+          const { data } = await axios.post(
+            `https://server-pf.onrender.com/user`,
+            {
+              id,
+              name,
+              email,
+            }
+          );
+          console.log("data", data);
         } catch (error) {
           console.log("errorAxios", error);
         }

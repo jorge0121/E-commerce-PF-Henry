@@ -13,9 +13,9 @@ import {
 function FormSelect() {
   const dispatch = useDispatch();
 
-  const { dataA, dataY, dataG } = useSelector(state => state.book);
+  const { dataA, dataY, dataG } = useSelector((state) => state.book);
   const { author, year, gender, value, organization, page } = useSelector(
-    state => state.bookFilter
+    (state) => state.bookFilter
   );
 
   const { sortOption } = Filter();
@@ -52,23 +52,25 @@ function FormSelect() {
   );
 
   return (
-   
     <ul className="selects columns is-multiline">
       <li className="column is-one-third lista">
         <div className="field">
           <label className="label">Autor</label>
           <div className="control">
             <div className="select is-fullwidth">
-              <select className="select"
+              <select
+                className="select"
                 name="author"
                 value={author}
                 onChange={handlerAutorChange}
               >
-                {dataA.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
+                <optgroup label="Filtrar por autor">
+                  {dataA.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </optgroup>
               </select>
             </div>
           </div>
@@ -86,7 +88,7 @@ function FormSelect() {
           </div>
         )}
       </li>
-  
+
       <li className="column is-one-third lista">
         <div className="field">
           <label className="label">Año</label>
@@ -115,7 +117,7 @@ function FormSelect() {
           </div>
         )}
       </li>
-  
+
       <li className="column is-one-third lista">
         <div className="field">
           <label className="label">Género</label>
@@ -148,14 +150,14 @@ function FormSelect() {
           </div>
         )}
       </li>
-  
+
       <li className="column is-full">
         <div className="field">
           <div className="control">
             <button
               className="button is-primary"
               onClick={handlerFilter}
-              disabled={!author && !year && !gender}
+              disabled={author || year || gender ? false : true}
             >
               Filtrar
             </button>
