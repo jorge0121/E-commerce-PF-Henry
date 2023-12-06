@@ -59,24 +59,6 @@ function RegisterLogin() {
               email,
             }
           );
-          if (data) {
-            try {
-              const { data } = await axios(
-                `https://server-pf.onrender.com/user/client?id=${id}`
-              );
-              if (data) {
-                const admin = data.admin;
-                const banned = data.banned;
-                const idBooks = data.idBooks;
-                dispatch(setUser({ id, name, email, admin, banned }));
-                if (idBooks) {
-                  dispatch(setIdBooks({ idBooks }));
-                }
-              }
-            } catch (error) {
-              console.log("errorAxios", error.message);
-            }
-          }
         } catch (error) {
           console.log("errorAxios", error.message);
         }
