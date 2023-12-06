@@ -41,7 +41,6 @@ routerUser.put("/update", async (req, res) => {
   try {
     const { userId } = req.query;
     const user = req.body;
-    console.log("user", user);
     if (userId) {
       const userUpdated = await updatedUser(user, userId);
       res.status(201).json(userUpdated);

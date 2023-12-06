@@ -127,7 +127,6 @@ function RegisterLogin() {
               `https://server-pf.onrender.com/user/client?id=${id}`
             );
             if (data) {
-              console.log("data", data.idBooks);
               const admin = data.admin;
               const banned = data.banned;
               const idBooks = data.idBooks;

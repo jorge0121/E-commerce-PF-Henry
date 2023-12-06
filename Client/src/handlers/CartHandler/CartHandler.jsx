@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   setUserBooks,
-  setIdBooks,
   unSetUserBooks,
   removeUserBooks,
   updateUserBooks,
@@ -10,7 +9,7 @@ import axios from "axios";
 
 function CartHandler() {
   const dispatch = useDispatch();
-  const { userBooks, id, email } = useSelector((state) => state.user);
+  const { userBooks, id, email, idBooks } = useSelector((state) => state.user);
   const books = useSelector((state) => state.book.books);
 
   const putOrRemoveBookToCart = (id) => {
@@ -41,22 +40,18 @@ function CartHandler() {
   };
 
   const buyBooks = async () => {
-    const idBooks = userBooks.map((book) => book.id);
-    if (idBooks) {
-      dispatch(setIdBooks({ idBooks }));
       if (id && email) {
         try {
-          console.log("idBooks", idBooks);
           await axios.put(
             `https://server-pf.onrender.com/user/update?userId=${id}`,
             { idBooks }
           );
         } catch (error) {
-          console.log("errorAxios", error);
+          console.log("errorAxios", error.message);
         }
       }
       dispatch(unSetUserBooks());
-    }
+    
   };
 
   return {

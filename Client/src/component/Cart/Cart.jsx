@@ -1,16 +1,26 @@
 import "./Cart.css";
 import CartHandler from "../../handlers/CartHandler/CartHandler";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setIdBooks } from "../../redux/reducers/Users/UserSlice";
+import { Link } from "react-router-dom";
 
 function Cart() {
+  const dispatch = useDispatch();
   const { userBooks, totalBooks } = useSelector((state) => state.user);
-  const { removeBookFromCart, addBookToCart, clearBookCart,buyBooks } = CartHandler();
+  const { removeBookFromCart, addBookToCart, clearBookCart, buyBooks } =
+    CartHandler();
 
   const prices = [];
   const totalPrices = [];
   const [resultado, setResultado] = useState(0);
+
+  useEffect(() => {
+    const booksId = userBooks.map((book) => book.id);
+    if (booksId) {
+      dispatch(setIdBooks({ idBooks: booksId }));
+    }
+  }, []);
 
   useEffect(() => {
     prices.map((e) => {
@@ -19,6 +29,7 @@ function Cart() {
     });
     setResultado(totalPrices.reduce((suma, numero) => suma + numero, 0));
   }, [totalBooks]);
+
   return (
     <>
       {userBooks.length === 0 ? (
