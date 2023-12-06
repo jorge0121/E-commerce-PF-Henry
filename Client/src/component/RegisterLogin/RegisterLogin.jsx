@@ -47,14 +47,10 @@ function RegisterLogin() {
         await updateProfile(auth.currentUser, {
           displayName: nameRegistrer,
         });
-        const userId = credentials.user.uid;
-        const userNombre = credentials.user.displayName;
-        const userEmail = credentials.user.email;
-        dispatch(setUser({ id: userId, name: userNombre, email: userEmail }));
+        const id = credentials.user.uid;
+        const name = credentials.user.displayName;
+        const email = credentials.user.email;
         try {
-          const id = userId;
-          const name = userNombre;
-          const email = userEmail;
           const { data } = await axios.post(
             `https://server-pf.onrender.com/user`,
             {
@@ -63,6 +59,24 @@ function RegisterLogin() {
               email,
             }
           );
+          if (data) {
+            try {
+              const { data } = await axios(
+                `https://server-pf.onrender.com/user/client?id=${id}`
+              );
+              if (data) {
+                const admin = data.admin;
+                const banned = data.banned;
+                const idBooks = data.idBooks;
+                dispatch(setUser({ id, name, email, admin, banned }));
+                if (idBooks) {
+                  dispatch(setIdBooks({ idBooks }));
+                }
+              }
+            } catch (error) {
+              console.log("errorAxios", error.message);
+            }
+          }
         } catch (error) {
           console.log("errorAxios", error.message);
         }
@@ -98,7 +112,9 @@ function RegisterLogin() {
               const banned = data.banned;
               const idBooks = data.idBooks;
               dispatch(setUser({ id, name, email, admin, banned }));
-              dispatch(setIdBooks({ idBooks }));
+              if (idBooks) {
+                dispatch(setIdBooks({ idBooks }));
+              }
             }
           } catch (error) {
             console.log("errorAxios", error.message);
@@ -131,7 +147,40 @@ function RegisterLogin() {
               const banned = data.banned;
               const idBooks = data.idBooks;
               dispatch(setUser({ id, name, email, admin, banned }));
-              dispatch(setIdBooks({ idBooks }));
+              if (idBooks) {
+                dispatch(setIdBooks({ idBooks }));
+              }
+            } else {
+              try {
+                const { data } = await axios.post(
+                  `https://server-pf.onrender.com/user`,
+                  {
+                    id,
+                    name,
+                    email,
+                  }
+                );
+                if (data) {
+                  try {
+                    const { data } = await axios(
+                      `https://server-pf.onrender.com/user/client?id=${id}`
+                    );
+                    if (data) {
+                      const admin = data.admin;
+                      const banned = data.banned;
+                      const idBooks = data.idBooks;
+                      dispatch(setUser({ id, name, email, admin, banned }));
+                      if (idBooks) {
+                        dispatch(setIdBooks({ idBooks }));
+                      }
+                    }
+                  } catch (error) {
+                    console.log("errorAxios", error.message);
+                  }
+                }
+              } catch (error) {
+                console.log("errorAxios", error.message);
+              }
             }
           } catch (error) {
             console.log("errorAxios", error.message);
