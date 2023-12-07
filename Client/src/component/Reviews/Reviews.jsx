@@ -1,11 +1,9 @@
 import "./Reviews.css";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DetailHandler } from "../../handlers/DetailHandler/DetailHandler";
 
 function Reviews() {
-  const { commentations } = useSelector((state) => state.bookDetail);
   const [review, setReview] = useState(false);
 
   const {
@@ -36,7 +34,7 @@ function Reviews() {
               cols="30"
               rows="3"
               placeholder="Deja tu reseña ..."
-              className={`textarea has-fixed-size ${
+              className={`textarea has-fixed-size  ${
                 errors.commentario ? "is-danger" : ""
               } is-link`}
               {...register("commentation", {

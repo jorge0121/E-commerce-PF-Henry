@@ -206,7 +206,7 @@ function RegisterLogin() {
                   setIsModal(!isModal);
                   setIngresar(false);
                 }}
-                className="delete"
+                className="delete is-medium"
                 aria-label="close"
               />
               {!ingresar ? (
