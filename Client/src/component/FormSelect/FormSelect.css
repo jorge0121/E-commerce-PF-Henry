@@ -15,22 +15,20 @@
     background-color: #2e54d1;
     color: #fff;
   } */
-.selects{
+.Contenido-selects{
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+justify-content: center;
   border: 1px solid ;
   border-radius: 5px;
   margin: 5px;
 }
-.lista{
-margin: 8px;
 
+.li{
+  width: 300px;
+  margin: 10px;
 }
-span{
-  margin:  5px;
+.orden-boton{
+  display: flex;
 }
-.select {
- width: 150px;
-}
-
 
