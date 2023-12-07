@@ -36,38 +36,64 @@ function Cart() {
         <h1> Todavia no tienes libros agregados al carrito </h1>
       ) : (
         <>
-          <ul>
-            {userBooks.map((book) => (
-              <div key={book.id}>
-                {prices.push({ price: book.price, quantity: book.quantity })}
-                <Link to={`/detail/${book.id}`}>
-                  <li>
-                    Titulo: {book.title} Autor: {book.author} Precio: US$
-                    {book.price}
-                  </li>
-                </Link>
-                <button
-                  onClick={() => {
-                    removeBookFromCart(book.id);
-                  }}
-                >
-                  -
-                </button>
-                <span> {book.quantity} </span>
-                <button
-                  onClick={() => {
-                    addBookToCart(book.id);
-                  }}
-                >
-                  +
-                </button>
-              </div>
-            ))}
-          </ul>
-          <span>Cantidad total: {totalBooks}</span>
-          <h3>Total US$: {resultado} </h3>
-          <button onClick={clearBookCart}>Limpiar carrito</button>
-          <button onClick={buyBooks}>Comprar ahora</button>
+          <table className="table table is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userBooks.map((book) => (
+                <>
+                  {prices.push({ price: book.price, quantity: book.quantity })}
+                  <tr key={book.id}>
+                    <td>
+
+                    </td>
+                    <th>
+                      <Link to={`/detail/${book.id}`}>{book.title}</Link>
+                    </th>
+                    <td>{book.author}</td>
+                    <td>US$ {book.price}</td>
+                    <td>
+                      <button
+                        className="button is-danger"
+                        onClick={() => {
+                          removeBookFromCart(book.id);
+                        }}
+                      >
+                        -
+                      </button>
+                      <span> {book.quantity} </span>
+                      <button
+                        className="button is-primary"
+                        onClick={() => {
+                          addBookToCart(book.id);
+                        }}
+                      >
+                        +
+                      </button>
+                    </td>
+                  </tr>
+                </>
+              ))}
+            </tbody>
+          </table>
+          <div className="tags has-addons">
+            <span className="tag is-primary is-large">
+              Cantidad total: {totalBooks}
+            </span>
+            <span className="tag is-success is-large">Total US$: {resultado} </span>
+          </div>
+            <br />
+          <button onClick={clearBookCart} className="button is-danger clean ">Limpiar carrito</button>
+          <button onClick={buyBooks} className="button is-primary buy">
+            Comprar ahora
+          </button>
         </>
       )}
     </>
