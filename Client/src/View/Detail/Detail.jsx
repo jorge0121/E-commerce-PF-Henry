@@ -1,29 +1,100 @@
 import "./Detail.css";
+import axios from "axios";
+import CartHandler from "../../handlers/CartHandler/CartHandler";
 import { useEffect } from "react";
-import { DetailHandler } from "../../handlers/DetailHandler/DetailHandler";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setBookDetail,
+  setCommentations,
+} from "../../redux/reducers/BookDetail/BookDetailSlice";
+import Reviews from "../../component/Reviews/Reviews";
 
 function Detail() {
-  const { detail } = useSelector((state) => state.bookDetail);
+  const dispatch = useDispatch();
+
+  const { detail, commentations, enviado } = useSelector(
+    (state) => state.bookDetail
+  );
+  const { idBooks, email, userBooks } = useSelector((state) => state.user);
+  const { putOrRemoveBookToCart } = CartHandler();
+
   const { id } = useParams();
 
-  const { detailHandler } = DetailHandler();
   useEffect(() => {
+    const detailHandler = async (id) => {
+      try {
+        const { data } = await axios(
+          `https://server-pf.onrender.com/book/${id}`
+        );
+        if (data) {
+          dispatch(setBookDetail(data));
+          dispatch(setCommentations(data.Commentations));
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
     detailHandler(id);
-  }, [id]);
+  }, [id, enviado]);
 
   return (
     <>
-      <h1>Titulo: {detail.title}</h1>
-      <h2>Autor: {detail.author}</h2>
-      <img src={detail.image} alt="book's image" className="bookImage" />
-      <h3> Descripcion: </h3> <p>{detail.description}</p>
-      <br />
-      <h3>Año de publicacion: {detail.year}</h3>
-      <h3>Genero: {detail.gender}</h3>
-      <h4>Numero de paginas: {detail.pages}</h4>
-      <h2>Precio: US$ {detail.price} </h2>
+      <div className="columns">
+        <div className=" column is-two-fifths">
+          <img src={detail.image} alt="book's image" className="bookImage" />
+        </div>
+
+        <div className="column">
+          <article className="content">
+            <h2>Autor: {detail.author}</h2>
+            <h1>Titulo: {detail.title}</h1>
+            <p>
+              <strong> Descripcion: </strong>
+              {detail.description}
+            </p>
+            <p>
+              <strong>Año de publicacion: </strong> {detail.year}
+            </p>
+            <p>
+              <strong>Paginas: </strong>
+              {detail.pages}
+            </p>
+            <h4>Genero: {detail.gender}</h4>
+            <h3>Precio: US$ {detail.price} </h3>
+          </article>
+          <div className="card-tarjeta">
+            <button
+              className={
+                userBooks.find((book) => book.id === detail.id)
+                  ? " button is-danger"
+                  : "button is-primary"
+              }
+              onClick={() => {
+                putOrRemoveBookToCart(detail.id);
+              }}
+            >
+              {userBooks.find((book) => book.id === detail.id)
+                ? "Remover del "
+                : "Agregar al "}
+              carrito
+            </button>
+          </div>
+        </div>
+      </div>
+      {commentations.length !== 0 &&
+        commentations.map((comment) => (
+          <div key={comment.id} className="box">
+            <article>
+              <p>
+                <strong> {comment.User.name}</strong>
+                <br />
+                Reseña: {comment.commentation}
+              </p>
+            </article>
+          </div>
+        ))}
+      {email && idBooks.includes(Number(id)) ? <Reviews /> : null}
     </>
   );
 }

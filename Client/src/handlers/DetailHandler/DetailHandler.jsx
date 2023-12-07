@@ -1,18 +1,32 @@
 import axios from "axios";
-import { setBookDetail } from "../../redux/reducers/BookDetail/BookDetailSlice";
-import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { setEnviado } from "../../redux/reducers/BookDetail/BookDetailSlice";
 
 export function DetailHandler() {
   const dispatch = useDispatch();
+  const { detail } = useSelector((state) => state.bookDetail);
+  const { id } = useSelector((state) => state.user);
 
-  const detailHandler = async (id) => {
+  const { reset } = useForm();
+
+  const onSubmit = async (commentation) => {
     try {
-      const { data } = await axios(`https://server-pf.onrender.com/book/${id}`);
-      dispatch(setBookDetail(data));
+      if (commentation) {
+        const { data } = await axios.post(
+          `https://server-pf.onrender.com/comment?bookId=${detail.id}&userId=${id}`,
+          commentation
+        );
+
+        if (data) {
+          // reset();
+          dispatch(setEnviado(true));
+        }
+      }
     } catch (error) {
-      console.log("error", error);
+      console.log("errorAxios", error.message);
     }
   };
 
-  return { detailHandler };
+  return { onSubmit };
 }
