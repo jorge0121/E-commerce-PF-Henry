@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function CardBook({ book }) {
-  const { userBooks } = useSelector(state => state.user);
+  const { userBooks } = useSelector((state) => state.user);
 
   const { id, title, image, price } = book;
   const { putOrRemoveBookToCart } = CartHandler();
@@ -24,12 +24,16 @@ function CardBook({ book }) {
       </div>
       <div className="card-tarjeta">
         <button
-          className="button is-primary"
+          className={
+            userBooks.find((book) => book.id === id)
+              ? " button is-danger"
+              : "button is-primary"
+          }
           onClick={() => {
             putOrRemoveBookToCart(id);
           }}
         >
-          {userBooks.find(book => book.id === id)
+          {userBooks.find((book) => book.id === id)
             ? "Remover del "
             : "Agregar al "}
           carrito
@@ -38,5 +42,5 @@ function CardBook({ book }) {
     </div>
   );
 }
-
+//
 export default CardBook;

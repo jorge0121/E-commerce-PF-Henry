@@ -1,5 +1,4 @@
 import "./FormSelect.css";
-import Select from "react-select";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "../../handlers/FilterHandler/Filter";

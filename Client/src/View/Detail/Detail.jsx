@@ -1,17 +1,39 @@
 import "./Detail.css";
+import axios from "axios";
 import { useEffect } from "react";
-import { DetailHandler } from "../../handlers/DetailHandler/DetailHandler";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setBookDetail,
+  setCommentations,
+} from "../../redux/reducers/BookDetail/BookDetailSlice";
+import Reviews from "../../component/Reviews/Reviews";
 
 function Detail() {
-  const { detail } = useSelector((state) => state.bookDetail);
+  const dispatch = useDispatch();
+
+  const { detail, commentations, enviado } = useSelector(
+    (state) => state.bookDetail
+  );
+  const { idBooks, email } = useSelector((state) => state.user);
   const { id } = useParams();
 
-  const { detailHandler } = DetailHandler();
   useEffect(() => {
+    const detailHandler = async (id) => {
+      try {
+        const { data } = await axios(
+          `https://server-pf.onrender.com/book/${id}`
+        );
+        if (data) {
+          dispatch(setBookDetail(data));
+          dispatch(setCommentations(data.Commentations));
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
     detailHandler(id);
-  }, [id]);
+  }, [id, enviado]);
 
   return (
     <>
@@ -24,6 +46,14 @@ function Detail() {
       <h3>Genero: {detail.gender}</h3>
       <h4>Numero de paginas: {detail.pages}</h4>
       <h2>Precio: US$ {detail.price} </h2>
+      {commentations.length !== 0 &&
+        commentations.map((comment) => (
+          <div key={comment.id}>
+            <h3> Usuario: {comment.User.name}</h3>
+            <p>Reseña: {comment.commentation}</p>
+          </div>
+        ))}
+      {email && idBooks.includes(Number(id)) ? <Reviews /> : null}
     </>
   );
 }
