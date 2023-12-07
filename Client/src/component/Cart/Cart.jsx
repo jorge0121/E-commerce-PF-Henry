@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Cart() {
   const dispatch = useDispatch();
-  const { userBooks, totalBooks } = useSelector((state) => state.user);
+  const { userBooks, totalBooks } = useSelector(state => state.user);
   const { removeBookFromCart, addBookToCart, clearBookCart, buyBooks } =
     CartHandler();
 
@@ -16,14 +16,14 @@ function Cart() {
   const [resultado, setResultado] = useState(0);
 
   useEffect(() => {
-    const booksId = userBooks.map((book) => book.id);
+    const booksId = userBooks.map(book => book.id);
     if (booksId) {
       dispatch(setIdBooks({ idBooks: booksId }));
     }
   }, []);
 
   useEffect(() => {
-    prices.map((e) => {
+    prices.map(e => {
       const realPrice = e.price * e.quantity;
       totalPrices.push(realPrice);
     });
@@ -32,27 +32,30 @@ function Cart() {
 
   return (
     <>
-      {userBooks.length === 0 ? (
+      {/* {userBooks.length === 0 ? (
         <h1> Todavia no tienes libros agregados al carrito </h1>
       ) : (
-        <>
-          <ul>
+        <> 
+            <ul className="table is-striped">
+              
             {userBooks.map((book) => (
-              <div key={book.id}>
+              <div className="" key={book.id}>
+
                 {prices.push({ price: book.price, quantity: book.quantity })}
                 <Link to={`/detail/${book.id}`}>
-                  <li>
-                    Titulo: {book.title} Autor: {book.author} Precio: US$
+                    <img className="image" src={book.image } alt="" />
+                  <li className="tbody">
+                    {book.title} Autor: {book.author} Precio: US$
                     {book.price}
                   </li>
                 </Link>
-                <button
+                <button 
                   onClick={() => {
                     removeBookFromCart(book.id);
                   }}
                 >
                   -
-                </button>
+                </button >
                 <span> {book.quantity} </span>
                 <button
                   onClick={() => {
@@ -65,11 +68,73 @@ function Cart() {
             ))}
           </ul>
           <span>Cantidad total: {totalBooks}</span>
-          <h3>Total US$: {resultado} </h3>
-          <button onClick={clearBookCart}>Limpiar carrito</button>
-          <button onClick={buyBooks}>Comprar ahora</button>
+            <h3>Total US$: {resultado} </h3>
+            <div className="boton">
+
+          <button className="button is-primary" onClick={clearBookCart}>Limpiar carrito</button>
+          <button  className="button is-primary" onClick={buyBooks}>Comprar ahora</button>
+            </div>
         </>
-      )}
+      )} 
+      
+
+      <div>
+
+
+    </div> */}
+      <>
+        <table className="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userBooks.map(book => (
+              <tr key={book.id}>
+                <td>
+                  <Link to={`/detail/${book.id}`}>
+                    <img className="image" src={book.image} alt="" />
+                  </Link>
+                </td>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>US$ {book.price}</td>
+                <td>
+                  <button className="button"onClick={() => removeBookFromCart(book.id)}>-</button>
+                  <span className="quantity">{book.quantity}</span>
+                  <button className="button "onClick={() => addBookToCart(book.id)}>+</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        
+            <div className="Contenedor-resultados">
+          
+            
+        <span className="texto-resultados">Cantidad total: {totalBooks}</span>
+            <span className="texto-resultados">Total US$: {resultado}</span> 
+          
+          <div className="contenedor-Botones">
+            <div className="Btn1">
+              
+           <button className="button is-primary" onClick={clearBookCart}>Limpiar carrito</button>
+            </div>
+            <div className="Btn1">
+
+          <button  className="button is-primary" onClick={buyBooks}>Comprar ahora</button>
+            </div>
+          </div>
+            </div>
+
+
+
+      </>
     </>
   );
 }

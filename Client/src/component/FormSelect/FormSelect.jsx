@@ -52,8 +52,8 @@ function FormSelect() {
   );
 
   return (
-    <ul className="selects columns is-multiline">
-      <li className="column is-one-third lista">
+    <ul className="Contenido-selects">
+      <li className="li">
         <div className="field">
           <label className="label">Autor</label>
           <div className="control">
@@ -89,7 +89,7 @@ function FormSelect() {
         )}
       </li>
 
-      <li className="column is-one-third lista">
+      <li className="li">
         <div className="field">
           <label className="label">Año</label>
           <div className="control">
@@ -118,7 +118,7 @@ function FormSelect() {
         )}
       </li>
 
-      <li className="column is-one-third lista">
+      <li className="li">
         <div className="field">
           <label className="label">Género</label>
           <div className="control">
@@ -151,19 +151,20 @@ function FormSelect() {
         )}
       </li>
 
-      <li className="column is-full">
-        <div className="field">
-          <div className="control">
+     
+       
+   
             <button
-              className="button is-primary"
+              className="button is-primary is-hovered"
               onClick={handlerFilter}
               disabled={author || year || gender ? false : true}
             >
               Filtrar
             </button>
-          </div>
-        </div>
-      </li>
+          
+          
+      
+     
     </ul>
   );
 }
