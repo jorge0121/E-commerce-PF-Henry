@@ -20,7 +20,7 @@ function Paginado() {
   };
 
   return (
-    <div>
+    <div className="pagination">
       <button
         onClick={handlePaginaAnterior}
         disabled={page === 1}

@@ -27,22 +27,22 @@ export function FilterHandler() {
   };
 
   const handlerSortChange = (e) => {
-    if (e.value === "Titilo A-Z") {
+    if (e.target.value === "Titilo A-Z") {
       dispatch(setBookValue({ value: "title" }));
       dispatch(setBookOrganization({ organization: "ASC" }));
       dispatch(setBookPage({ page: 1 }));
     }
-    if (e.value === "Titilo Z-A") {
+    if (e.target.value === "Titilo Z-A") {
       dispatch(setBookValue({ value: "title" }));
       dispatch(setBookOrganization({ organization: "DESC" }));
       dispatch(setBookPage({ page: 1 }));
     }
-    if (e.value === "Precio menor") {
+    if (e.target.value === "Precio menor") {
       dispatch(setBookValue({ value: "price" }));
       dispatch(setBookOrganization({ organization: "ASC" }));
       dispatch(setBookPage({ page: 1 }));
     }
-    if (e.value === "Precio mayor") {
+    if (e.target.value === "Precio mayor") {
       dispatch(setBookValue({ value: "price" }));
       dispatch(setBookOrganization({ organization: "DESC" }));
       dispatch(setBookPage({ page: 1 }));
@@ -63,7 +63,7 @@ export function FilterHandler() {
         dispatch(setTotalData(totalPages));
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("errorAxios", error.message);
     }
   };
 
@@ -78,7 +78,7 @@ export function FilterHandler() {
         dispatch(setBook(data.filteredBooks));
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("errorAxios", error.message);
     }
   };
 

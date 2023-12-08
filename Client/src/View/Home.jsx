@@ -58,26 +58,38 @@ function Home() {
   return (
     <>
       <br />
-      <FormSelect />
-      <Paginado />
-      {books.length === 0 && totalData === 1 ? (
-        <>
-          <h3>Lo sentimos, al momento no contamos con ese libro</h3>
-          <h1>🥲</h1>
-        </>
-      ) : books.length === 0 && (author || year || gender) ? (
-        <>
-          <h3>
-            Lo sentimos, al momento no contamos con libros que tengan esas
-            características
-          </h3>
-          <h1>🥲</h1>
-        </>
-      ) : (
-        <div className="containerB">
-          <Cards />
+      <div className="columns">
+        <div className=" column is-one-fifth">
+          <FormSelect />
         </div>
-      )}
+
+        <div className="column">
+          <div className="block">
+            <Paginado />
+          </div>
+          {books.length === 0 && totalData === 1 ? (
+            <>
+              <h3>Lo sentimos, al momento no contamos con ese libro</h3>
+              <h1>🥲</h1>
+            </>
+          ) : books.length === 0 && (author || year || gender) ? (
+            <>
+              <h3>
+                Lo sentimos, al momento no contamos con libros que tengan esas
+                características
+              </h3>
+              <h1>🥲</h1>
+            </>
+          ) : (
+            <div className="containerB">
+              <Cards />
+            </div>
+          )}
+          <div className="block">
+            <Paginado />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

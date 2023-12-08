@@ -1,5 +1,5 @@
 import "./FormSelect.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "../../handlers/FilterHandler/Filter";
 import { FilterHandler } from "../../handlers/FilterHandler/FilterHandler";
@@ -27,10 +27,6 @@ function FormSelect() {
     handlerSort,
   } = FilterHandler();
 
-  // const [isAuthor, setIsAuthor] = useState(true);
-  // const [isYear, setIsYear] = useState(true);
-  // const [isGender, setIsGender] = useState(true);
-
   useEffect(() => {
     if (value && organization) {
       handlerSort();
@@ -42,13 +38,6 @@ function FormSelect() {
       handlerFilter();
     }
   }, [page]);
-
-  const Checkbox = ({ children, ...props }) => (
-    <label style={{ marginRight: "1em" }}>
-      <input type="checkbox" {...props} />
-      {children}
-    </label>
-  );
 
   return (
     <ul className="Contenido-selects">
@@ -149,21 +138,37 @@ function FormSelect() {
           </div>
         )}
       </li>
+      <button
+        className="button is-primary is-hovered"
+        onClick={handlerFilter}
+        disabled={author || year || gender ? false : true}
+      >
+        Filtrar
+      </button>
 
-     
-       
-   
-            <button
-              className="button is-primary is-hovered"
-              onClick={handlerFilter}
-              disabled={author || year || gender ? false : true}
-            >
-              Filtrar
-            </button>
-          
-          
-      
-     
+      <li className="li">
+        <div className="field">
+          <label className="label">Ordenar por...</label>
+          <div className="control">
+            <div className="select is-fullwidth">
+              <select name="sort" value={value} onChange={handlerSortChange}>
+                {sortOption.map((item) => (
+                  <option key={item.value} value={item.value}>
+                    {item.value}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </li>
+      <button
+        disabled={!value ? true : false}
+        className="button is-primary is-hovered"
+        onClick={handlerSort}
+      >
+        Ordenar
+      </button>
     </ul>
   );
 }

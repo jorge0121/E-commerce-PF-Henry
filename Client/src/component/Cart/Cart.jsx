@@ -51,9 +51,7 @@ function Cart() {
                 <>
                   {prices.push({ price: book.price, quantity: book.quantity })}
                   <tr key={book.id}>
-                    <td>
-
-                    </td>
+                    <td></td>
                     <th>
                       <Link to={`/detail/${book.id}`}>{book.title}</Link>
                     </th>
@@ -68,7 +66,9 @@ function Cart() {
                       >
                         -
                       </button>
-                      <span> {book.quantity} </span>
+                      <span className="quantity">
+                        <strong>{book.quantity} </strong>
+                      </span>
                       <button
                         className="button is-primary"
                         onClick={() => {
@@ -87,10 +87,14 @@ function Cart() {
             <span className="tag is-primary is-large">
               Cantidad total: {totalBooks}
             </span>
-            <span className="tag is-success is-large">Total US$: {resultado} </span>
+            <span className="tag is-success is-large">
+              Total US$: {resultado}{" "}
+            </span>
           </div>
-            <br />
-          <button onClick={clearBookCart} className="button is-danger clean ">Limpiar carrito</button>
+          <br />
+          <button onClick={clearBookCart} className="button is-danger clean ">
+            Limpiar carrito
+          </button>
           <button onClick={buyBooks} className="button is-primary buy">
             Comprar ahora
           </button>
