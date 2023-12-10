@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import axios from "axios";
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -24,9 +26,27 @@ const Navbar = () => {
   };
 
   return (
+    
     <nav className={styles.navbar}>
-      <div className={styles.brand}>E-Commerce Books</div>
-      <div className={styles.searchbar}>
+    {location.pathname === '/admin'?
+       <>
+       <div className={styles.brand}>E-Commerce Books</div>
+       <ul className={styles.navlinks}>
+       
+       <li>
+       
+          <Link to ="/">Inicio</Link>
+         </li>
+         <li>
+           <Link to ="/bulke">Crear Libro</Link>
+         </li>
+         
+         
+       </ul>
+       </>:
+       <>
+       <div className={styles.brand}>E-Commerce Books</div>
+       <div className={styles.searchbar}>
         <input
           className={styles.searchinput}
           type="text"
@@ -39,21 +59,29 @@ const Navbar = () => {
         </button>
       </div>
       <ul className={styles.navlinks}>
-        <li>
-          <a href="/">Inicio</a>
+      
+      <li>
+      
+         <Link to ="/">Inicio</Link>
         </li>
+        
         <li>
-          <a href="/bulke">Crear Libro</a>
-        </li>
-        <li>
-          <a href="/carrito">Carrito</a>
+          <Link to="/carrito">Carrrito</Link>
         </li>
         <li className={styles.login}>
           <RegisterLogin />
         </li>
       </ul>
+      </>
+}
+     
+      
+
+
     </nav>
+    
   );
+  
 };
 
 export default Navbar;

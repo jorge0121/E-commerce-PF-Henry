@@ -1,56 +1,56 @@
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import axios from 'axios';
+import { useForm,Controller } from "react-hook-form";
+import styles from './EditForm.module.css'
+import './stylesModal.css'
 
-import styles from "./Form.module.css";
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { uploadImage } from "../../firebase-config";
-import { useState } from "react";
-import {Link} from 'react-router-dom'
-
-const FormCreateBook = () => {
-  const [file, setFile] = useState(null);
+const EditFormModal = ({ isOpen, onClose, book, onUpdate }) => {
+  const [editedBook, setEditedBook] = useState({ ...book });
   const {
-    register,
     handleSubmit,
-    formState: { errors },
+    control,
+    register,
     setValue,
-    reset,
-  } = useForm();
+    formState: { errors },
+  } = useForm({
+    defaultValues: { ...book },
+  });
 
-  const onSubmit = async (data) => {
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedBook((prevBook) => ({
+      ...prevBook,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdate = async (data) => {
     try {
-      const url = await uploadImage(file);
-      // Realizo la petición Axios con los datos del formulario
-      const arrayData = [data];
-      arrayData[0].image = url;
-      console.log(arrayData);
-
-      const response = await axios.post(
-        "https://server-pf.onrender.com/book",
-        arrayData[0]
-      );
-
-      // Limpio el formulario después del éxito
-
-      alert("Enviando los Datos..");
-      reset();
+      const updatedBook = { ...book, ...data };
+      const response = await axios.put(`https://server-pf.onrender.com/book/update/${book.id}`, updatedBook);
+    
+      onUpdate(updatedBook);
+      onClose();
     } catch (error) {
-      if (error.response) {
-        console.error(
-          "Error en la respuesta del servidor:",
-          error.response.data
-        );
-      } else if (error.request) {
-        console.error("No se recibió respuesta del servidor");
-      } else {
-        console.error("Error al enviar la solicitud:", error.message);
-      }
+      console.error('Error updating book:', error);
     }
   };
 
   return (
-    <>
-      <h2>Nuevo Libro </h2>
-      <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      contentLabel="Editar Libro"
+      ariaHideApp={false}
+     className="modal1"
+
+      
+     
+    >
+      <h2 className="title is-4">Actualizar Libro</h2>
+      <form className={styles.container} onSubmit={handleSubmit(handleUpdate)}>
         <div>
           <label className="label">Titulo:</label>
           <input
@@ -70,7 +70,7 @@ const FormCreateBook = () => {
                 message: "Máximo 20 caracteres",
               },
             })}
-          />
+           onChange={handleInputChange}/>
           {errors.title && (
             <span className="help is-danger">{errors.title.message}</span>
           )}
@@ -97,7 +97,7 @@ const FormCreateBook = () => {
                 message: "Máximo 20 caracteres",
               },
             })}
-          />
+            onChange={handleInputChange}/>
           {errors.author && (
             <span className="help is-danger">{errors.author.message}</span>
           )}
@@ -145,7 +145,7 @@ const FormCreateBook = () => {
                 message: "Máximo 20 caracteres",
               },
             })}
-          />
+            onChange={handleInputChange}/>
           {errors.year && (
             <span className="help is-danger">{errors.year.message}</span>
           )}
@@ -166,7 +166,7 @@ const FormCreateBook = () => {
                 message: "El precio debe ser mayor a cero",
               },
             })}
-          />
+            onChange={handleInputChange}/>
           {errors.price && (
             <span className="help is-danger">{errors.price.message}</span>
           )}
@@ -187,7 +187,7 @@ const FormCreateBook = () => {
                 message: "El número debe ser mayor a cero",
               },
             })}
-          />
+            onChange={handleInputChange}/>
           {errors.pages && (
             <span className="help is-danger">{errors.pages.message}</span>
           )}
@@ -213,23 +213,13 @@ const FormCreateBook = () => {
                 message: "Máximo 100 caracteres",
               },
             })}
-          />
+            onChange={handleInputChange}/>
           {errors.description && (
             <span className="help is-danger">{errors.description.message}</span>
           )}
         </div>
-        <div>
-          <label className="label">Activo:</label>
-          <select
-            {...register("active", {
-              required: { value: true, message: "Genero requerido" },
-            })}
-          >
-            <option value="true">Si</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-        <div>
+        
+        {/*<div>
           <label className="label">Imagen:</label>
           <input
             type="file"
@@ -237,15 +227,14 @@ const FormCreateBook = () => {
               setValue("image", setFile(e.target.files[0]));
             }}
           />
-        </div>
-
-        <button class="button is-link"type="submit">
-          Crear Libro
+        </div>*/}
+         <button type="submit" className="button is-primary is-small">Guardar Cambios</button>
+        <button type="button" onClick={onClose} className="button is-danger is-small">
+          Cancelar
         </button>
-        <Link to="/admin">Cancelar</Link>
       </form>
-    </>
+    </Modal>
   );
 };
 
-export default FormCreateBook;
+export default EditFormModal;

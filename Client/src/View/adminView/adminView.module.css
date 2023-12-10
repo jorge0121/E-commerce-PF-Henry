@@ -1,0 +1,10 @@
+.button{
+    color: rgb(19, 66, 221);
+    position: absolute; 
+    left:10px;
+    border-radius: 15px;
+    font-size: medium;
+    margin-top: 25px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 150px;
+}
