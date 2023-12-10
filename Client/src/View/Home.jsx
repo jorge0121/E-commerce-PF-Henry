@@ -58,15 +58,16 @@ function Home() {
   return (
     <>
       <br />
+      <div className="page">
+            <Paginado />
+          </div>
       <div className="columns">
         <div className=" column is-one-fifth">
           <FormSelect />
         </div>
 
         <div className="column">
-          <div className="block">
-            <Paginado />
-          </div>
+
           {books.length === 0 && totalData === 1 ? (
             <>
               <h3>Lo sentimos, al momento no contamos con ese libro</h3>
@@ -85,11 +86,11 @@ function Home() {
               <Cards />
             </div>
           )}
-          <div className="block">
-            <Paginado />
-          </div>
         </div>
       </div>
+          <div className="page">
+            <Paginado />
+          </div>
     </>
   );
 }
