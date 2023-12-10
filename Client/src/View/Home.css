@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
-.page{
+.page {
   margin: 0 4%;
+}
+
+.pageBottom {
+  margin: 0 4% 3% 4%;
 }

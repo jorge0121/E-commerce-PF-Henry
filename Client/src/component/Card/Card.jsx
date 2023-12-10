@@ -20,7 +20,7 @@ function CardBook({ book }) {
         </Link>
       </div>
       <div>
-        <h2>Precio: US$ {price} </h2>
+        <h3  className="price">Precio: US$ {price} </h3>
       </div>
       <div className="card-tarjeta">
         <button

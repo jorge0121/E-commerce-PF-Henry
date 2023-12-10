@@ -59,7 +59,6 @@ function Home() {
 
   return (
     <>
-    <NavBar/>
       <br />
       <div className="page">
             <Paginado />
@@ -91,7 +90,7 @@ function Home() {
           )}
         </div>
       </div>
-          <div className="page">
+          <div className="pageBottom">
             <Paginado />
           </div>
     </>

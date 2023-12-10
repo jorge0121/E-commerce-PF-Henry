@@ -47,7 +47,7 @@ function Detail() {
 
         <div className="column">
           <article className="content">
-            <h2>Autor: {detail.author}</h2>
+            <h1>Autor: {detail.author}</h1>
             <h1>Titulo: {detail.title}</h1>
             <p>
               <strong> Descripcion: </strong>
