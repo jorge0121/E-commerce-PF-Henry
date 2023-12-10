@@ -5,6 +5,7 @@ import Paginado from "../component/Paginado/Paginado";
 import FormSelect from "../component/FormSelect/FormSelect";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "../component/NavBar/NavBar";
 import {
   setBook,
   setDataA,
@@ -12,6 +13,7 @@ import {
   setDataG,
   setTotalData,
 } from "../redux/reducers/Books/booksSlice";
+
 
 function Home() {
   const { author, year, gender, value, organization, page } = useSelector(
@@ -57,6 +59,7 @@ function Home() {
 
   return (
     <>
+    <NavBar/>
       <br />
       <div className="page">
             <Paginado />
