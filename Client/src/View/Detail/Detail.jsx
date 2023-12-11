@@ -17,6 +17,7 @@ function Detail() {
     (state) => state.bookDetail
   );
   const { idBooks, email, userBooks } = useSelector((state) => state.user);
+  
   const { putOrRemoveBookToCart } = CartHandler();
 
   const { id } = useParams();

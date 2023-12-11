@@ -1,12 +1,14 @@
-import RegisterLogin from "../RegisterLogin/RegisterLogin";
-import styles from "./NavBar.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import axios from "axios";
-import { Link, useLocation } from 'react-router-dom';
+import styles from "./NavBar.module.css";
+import RegisterLogin from "../RegisterLogin/RegisterLogin";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 
 const Navbar = () => {
+  const { id, admin } = useSelector((state) => state.user);
+
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,62 +28,54 @@ const Navbar = () => {
   };
 
   return (
-    
     <nav className={styles.navbar}>
-    {location.pathname === '/admin'?
-       <>
-       <div className={styles.brand}>E-Commerce Books</div>
-       <ul className={styles.navlinks}>
-       
-       <li>
-       
-          <Link to ="/">Inicio</Link>
-         </li>
-         <li>
-           <Link to ="/bulke">Crear Libro</Link>
-         </li>
-         
-         
-       </ul>
-       </>:
-       <>
-       <div className={styles.brand}>E-Commerce Books</div>
-       <div className={styles.searchbar}>
-        <input
-          className={styles.searchinput}
-          type="text"
-          placeholder="Buscar libros por titulo"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className={styles.searchbutton} onClick={handleSearch}>
-          Buscar
-        </button>
-      </div>
-      <ul className={styles.navlinks}>
-      
-      <li>
-      
-         <Link to ="/">Inicio</Link>
-        </li>
-        
-        <li>
-          <Link to="/carrito">Carrrito</Link>
-        </li>
-        <li className={styles.login}>
-          <RegisterLogin />
-        </li>
-      </ul>
-      </>
-}
-     
-      
-
-
+      {location.pathname === "/admin" ? (
+        <>
+          <div className={styles.brand}>E-Commerce Books</div>
+          <ul className={styles.navlinks}>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            <li>
+              <Link to="/bulke">Crear Libro</Link>
+            </li>
+          </ul>
+        </>
+      ) : (
+        <>
+          <div className={styles.brand}>E-Commerce Books</div>
+          <div className={styles.searchbar}>
+            <input
+              className={styles.searchinput}
+              type="text"
+              placeholder="Buscar libros por titulo"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button className={styles.searchbutton} onClick={handleSearch}>
+              Buscar
+            </button>
+          </div>
+          <ul className={styles.navlinks}>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            {id && admin == true ? (
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
+            ) : null}
+            <li>
+              <Link to="/carrito">Carrrito</Link>
+            </li>
+            <li className={styles.login}>
+              <RegisterLogin />
+            </li>
+          </ul>
+        </>
+      )}
     </nav>
-    
   );
-  
 };
 
 export default Navbar;
