@@ -4,16 +4,17 @@ const stripe = new Stripe(
 );
 
 const createSession = async (req, res) => {
+  const {productName, productDescription, unitAmont} = req.body
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         price_data: {
           product_data: {
-            name: "LibroPrueba",
-            description: "descripcion Prueba",
+            name:productName,
+            description: productDescription,
           },
           currency: "usd",
-          unit_amount: 2000,
+          unit_amount: unitAmont,
         },
         quantity: 1,
       },
