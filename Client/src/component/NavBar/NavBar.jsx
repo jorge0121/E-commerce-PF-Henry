@@ -1,6 +1,11 @@
 import axios from "axios";
+import styles from "./NavBar.module.css";
+import RegisterLogin from "../RegisterLogin/RegisterLogin";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./../../img/logo2.png";
+import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
+import logo from "./../../img/logo2.png"
 
 const Navbar = () => {
   const { id, admin } = useSelector((state) => state.user);
