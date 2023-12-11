@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
-import logo from "./../../img/logo2.png"
+import logo from "./../../img/logo2.png";
 
 const Navbar = () => {
   const { id, admin } = useSelector((state) => state.user);
@@ -32,7 +32,6 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       {location.pathname === "/admin" ? (
         <>
-          {/* <div className={styles.brand}>E-Commerce Books</div> */}
           <ul className={styles.navlinks}>
             <li>
               <Link to="/">Inicio</Link>
@@ -44,19 +43,18 @@ const Navbar = () => {
         </>
       ) : (
         <>
-        
-            
-            <div className={styles.brand}>
-            <img className={styles.logo} src={logo} alt=""  />
-              
-             <span className="spann"> E-Commerce Books</span></div>
+          <div className={styles.brand}>
+            <img className={styles.logo} src={logo} alt="" />
+
+            <span className="spann"> E-Commerce Books</span>
+          </div>
           <div className={styles.searchbar}>
             <input
               className={styles.searchinput}
               type="text"
               placeholder="Buscar libros por titulo"
               value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button className={styles.searchbutton} onClick={handleSearch}>
               Buscar
@@ -66,6 +64,11 @@ const Navbar = () => {
             <li>
               <Link to="/">Inicio</Link>
             </li>
+            {id && admin === true ? (
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
+            ) : null}
             <li>
               <Link to="/carrito">Carrrito</Link>
             </li>
