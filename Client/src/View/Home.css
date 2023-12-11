@@ -3,3 +3,11 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.page {
+  margin: 0 4%;
+}
+
+.pageBottom {
+  margin: 0 4% 3% 4%;
+}

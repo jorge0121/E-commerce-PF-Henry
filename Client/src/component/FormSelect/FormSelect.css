@@ -3,8 +3,14 @@
   flex-wrap: wrap;
   justify-content: center;
   border: 1px solid;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-top: 38%;
+  background-color: #2e54d1;
+
+}
+
+.Contenido-selects label{
+  color: white;
 }
 
 .li {
