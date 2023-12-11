@@ -25,8 +25,8 @@ const createSession = async (req, res) => {
         }
       ],
       mode: "payment",
-      success_url: "http://localhost:3001/checkout/success",
-      cancel_url: "http://localhost:3001/checkout/cancel",
+      success_url: "https://server-pf.onrender.com/checkout/success",
+      cancel_url: "https://server-pf.onrender.com/checkout/cancel",
     });
 
     return res.json(session.url);

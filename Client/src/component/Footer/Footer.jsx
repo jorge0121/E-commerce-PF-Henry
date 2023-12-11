@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer class="footer">
+    <footer className="footer">
       <div className="columns">
         <div className="column is-half">
           <Link to="https://www.facebook.com" target="_blank">
@@ -25,9 +25,10 @@ function Footer() {
           <h3>direccion</h3>
           <h3>pflibrosgrupo07@gmail.com</h3>
           <h3>numero de contacto</h3>
+          <a href="#arriba">Arriba</a>
         </div>
       </div>
-      <div class="content has-text-centered">
+      <div className="content has-text-centered">
         <p>Copyright © </p>
       </div>
     </footer>

@@ -55,7 +55,7 @@ function CartHandler() {
     //detalles a ver abajo de todo
 
     try {
-      const Endpoint = "http://localhost:3001/checkout/session"; //CAMBIAR POR LA RUTA AL BACK EN RENDER
+      const Endpoint = "https://server-pf.onrender.com/checkout/session"; //CAMBIAR POR LA RUTA AL BACK EN RENDER
 
       const data = userBooks.map((book) => ({
         productName: book.title,
@@ -63,9 +63,12 @@ function CartHandler() {
         unitAmount: book.price,
       }));
 
-      const response = await axios.post(Endpoint, data);
+      const response = await axios.post(Endpoint, data[0]);
 
-      console.log(response);
+      console.log("response", response.data);
+      if (response.data) {
+        window.location.href = response.data;
+      }
     } catch (error) {
       console.log(error);
     }

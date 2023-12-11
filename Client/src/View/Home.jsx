@@ -13,7 +13,6 @@ import {
   setTotalData,
 } from "../redux/reducers/Books/booksSlice";
 
-
 function Home() {
   const { author, year, gender, value, organization, page } = useSelector(
     (state) => state.bookFilter
@@ -60,15 +59,14 @@ function Home() {
     <>
       <br />
       <div className="page">
-            <Paginado />
-          </div>
+        <Paginado />
+      </div>
       <div className="columns">
         <div className=" column is-one-fifth">
           <FormSelect />
         </div>
 
         <div className="column">
-
           {books.length === 0 && totalData === 1 ? (
             <>
               <h3>Lo sentimos, al momento no contamos con ese libro</h3>
@@ -89,9 +87,9 @@ function Home() {
           )}
         </div>
       </div>
-          <div className="pageBottom">
-            <Paginado />
-          </div>
+      <div className="pageBottom">
+        <Paginado />
+      </div>
     </>
   );
 }

@@ -29,7 +29,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles.navbar} id="arriba">
       {location.pathname === "/admin" ? (
         <>
           <ul className={styles.navlinks}>
