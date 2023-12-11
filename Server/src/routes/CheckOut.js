@@ -3,7 +3,7 @@ const  createSession  = require ('./CheckOut/CreateSession');
 const router = express.Router();
 
 
-router.get("/session", createSession);
+router.post("/session", createSession);
 router.get("/success",(req, res) => res.send("Success"));
 router.get("/cancel", (req, res) => res.send("cancel "))
 
