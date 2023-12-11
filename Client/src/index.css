@@ -6,7 +6,8 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
 
-  background: linear-gradient(#84b6f4, #c5c6c8 70%);
+  /* background: linear-gradient(#84b6f4, #c5c6c8 70%); */
+  background-image: url("img/fondo.png");
   background-repeat: no-repeat;
   margin: 0;
   background-attachment: fixed;

@@ -5,7 +5,7 @@ const stripe = new Stripe(
 );
 
 const createSession = async (req, res) => {
-  const { imagen, productName, productDescription, unitAmount } = req.body;
+  const { imagen, productName, productDescription, unitAmount } = req.body;  // RECIBE DESDE http://localhost:3001/checkout/session
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -19,7 +19,7 @@ const createSession = async (req, res) => {
               description: productDescription,
               // images:[imagen]
             },
-            unit_amount:unitAmount,
+             unit_amount:unitAmount,
           },
           quantity: 1,
         }
