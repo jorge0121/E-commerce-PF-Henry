@@ -1,10 +1,9 @@
-
 import styles from "./Form.module.css";
 import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { uploadImage } from "../../firebase-config";
-import { useState } from "react";
-import {Link} from 'react-router-dom'
 
 const FormCreateBook = () => {
   const [file, setFile] = useState(null);
@@ -239,7 +238,7 @@ const FormCreateBook = () => {
           />
         </div>
 
-        <button class="button is-link"type="submit">
+        <button class="button is-link" type="submit">
           Crear Libro
         </button>
         <Link to="/admin">Cancelar</Link>

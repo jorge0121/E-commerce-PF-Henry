@@ -1,13 +1,10 @@
-import RegisterLogin from "../RegisterLogin/RegisterLogin";
-import styles from "./NavBar.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import logo from "./../../img/logo2.png";
 
 const Navbar = () => {
+  const { id, admin } = useSelector((state) => state.user);
+
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
@@ -64,7 +61,6 @@ const Navbar = () => {
             <li>
               <Link to="/">Inicio</Link>
             </li>
-
             <li>
               <Link to="/carrito">Carrrito</Link>
             </li>
