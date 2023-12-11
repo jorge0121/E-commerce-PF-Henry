@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Cart() {
   const dispatch = useDispatch();
   const { userBooks, totalBooks } = useSelector((state) => state.user);
-  const { removeBookFromCart, addBookToCart, clearBookCart, buyBooks } =
+  const { removeBookFromCart, addBookToCart, clearBookCart, buyBooks , checkBook} =
     CartHandler();
 
   const prices = [];
@@ -95,7 +95,7 @@ function Cart() {
           <button onClick={clearBookCart} className="button is-danger clean ">
             Limpiar carrito
           </button>
-          <button onClick={buyBooks} className="button is-primary buy">
+          <button onClick={checkBook} className="button is-primary buy">
             Comprar ahora
           </button>
         </>
