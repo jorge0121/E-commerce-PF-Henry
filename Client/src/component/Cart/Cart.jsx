@@ -8,12 +8,22 @@ import { Link } from "react-router-dom";
 function Cart() {
   const dispatch = useDispatch();
   const { userBooks, totalBooks } = useSelector((state) => state.user);
-  const { removeBookFromCart, addBookToCart, clearBookCart, buyBooks , checkBook} =
-    CartHandler();
+  const {
+    removeBookFromCart,
+    addBookToCart,
+    clearBookCart,
+    buyBooks,
+    checkBook,
+  } = CartHandler();
 
-  const prices = [];
-  const totalPrices = [];
+  // const prices = [];
+  // const totalPrices = [];
   const [resultado, setResultado] = useState(0);
+
+  useEffect(() => {
+    const booksBack = userBooks.map((item) => item.price * item.quantity);
+    setResultado(booksBack.reduce((suma, numero) => suma + numero, 0));
+  }, [totalBooks]);
 
   useEffect(() => {
     const booksId = userBooks.map((book) => book.id);
@@ -22,13 +32,12 @@ function Cart() {
     }
   }, []);
 
-  useEffect(() => {
-    prices.map((e) => {
-      const realPrice = e.price * e.quantity;
-      totalPrices.push(realPrice);
-    });
-    setResultado(totalPrices.reduce((suma, numero) => suma + numero, 0));
-  }, [totalBooks]);
+  // useEffect(() => {
+  //   prices.map((e) => {
+  //     const realPrice = e.price * e.quantity;
+  //     totalPrices.push(realPrice);
+  //   });
+  // }, [totalBooks]);
 
   return (
     <>
@@ -48,8 +57,8 @@ function Cart() {
             </thead>
             <tbody>
               {userBooks.map((book) => (
-                <>
-                  {prices.push({ price: book.price, quantity: book.quantity })}
+                <><br />
+                  {/* {prices.push({ price: book.price, quantity: book.quantity })} */}
                   <tr key={book.id}>
                     <td></td>
                     <th>
@@ -88,7 +97,7 @@ function Cart() {
               Cantidad total: {totalBooks}
             </span>
             <span className="tag is-success is-large">
-              Total US$: {resultado}{" "}
+              Total US$: {resultado}
             </span>
           </div>
           <br />

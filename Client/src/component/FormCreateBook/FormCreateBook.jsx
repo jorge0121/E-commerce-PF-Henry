@@ -218,17 +218,6 @@ const FormCreateBook = () => {
           )}
         </div>
         <div>
-          <label className="label">Activo:</label>
-          <select
-            {...register("active", {
-              required: { value: true, message: "Genero requerido" },
-            })}
-          >
-            <option value="true">Si</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-        <div>
           <label className="label">Imagen:</label>
           <input
             type="file"
@@ -236,7 +225,7 @@ const FormCreateBook = () => {
               setValue("image", setFile(e.target.files[0]));
             }}
           />
-        </div>
+        </div><br />
 
         <button class="button is-link" type="submit">
           Crear Libro

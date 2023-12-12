@@ -1,11 +1,11 @@
 .container{
     border: 5px solid blue;
     padding: 15px;
-    width: 300px;
+    width: 340px;
     height: auto;
     border-radius: 15px;
     margin-left: 39%;
-    
+    color: white;
    }
    h2{
        text-align: center;

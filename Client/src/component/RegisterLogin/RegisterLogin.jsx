@@ -59,6 +59,15 @@ function RegisterLogin() {
               email,
             }
           );
+          if (data) {
+            const admin = data.admin;
+            const banned = data.banned;
+            const idBooks = data.idBooks;
+            dispatch(setUser({ id, name, email, admin, banned }));
+            if (idBooks) {
+              dispatch(setIdBooks({ idBooks }));
+            }
+          }
         } catch (error) {
           console.log("errorAxios", error.message);
         }
@@ -243,7 +252,7 @@ function RegisterLogin() {
                   <br />
                   <button className="buttonLogin" onClick={registerHandler}>
                     Registrarse
-                  </button>{" "}
+                  </button>
                   <br />
                   <button className="buttonLogin" onClick={loginWithGoogle}>
                     Ingresar con Google
