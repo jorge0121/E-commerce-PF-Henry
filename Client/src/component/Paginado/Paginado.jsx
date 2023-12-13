@@ -33,7 +33,7 @@ function Paginado() {
       </span>
       <button
         onClick={handlePaginaSiguiente}
-        disabled={page >= totalData ? true : false}
+        disabled={page >= totalData || totalData === 0 ? true : false}
         className="orderButton"
       >
         Página Siguiente

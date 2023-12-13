@@ -16,8 +16,6 @@ function Cart() {
     checkBook,
   } = CartHandler();
 
-  // const prices = [];
-  // const totalPrices = [];
   const [resultado, setResultado] = useState(0);
 
   useEffect(() => {
@@ -32,23 +30,18 @@ function Cart() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   prices.map((e) => {
-  //     const realPrice = e.price * e.quantity;
-  //     totalPrices.push(realPrice);
-  //   });
-  // }, [totalBooks]);
-
   return (
     <>
       {userBooks.length === 0 ? (
-        <h1> Todavia no tienes libros agregados al carrito </h1>
+        <div className="content">
+          <h1> Todavia no tienes libros agregados al carrito </h1>
+          <h1>🥲</h1>
+        </div>
       ) : (
         <>
           <table className="table table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
               <tr>
-                <th>Item</th>
                 <th>Titulo</th>
                 <th>Autor</th>
                 <th>Precio</th>
@@ -57,38 +50,34 @@ function Cart() {
             </thead>
             <tbody>
               {userBooks.map((book) => (
-                <><br />
-                  {/* {prices.push({ price: book.price, quantity: book.quantity })} */}
-                  <tr key={book.id}>
-                    <td></td>
-                    <th>
-                      <Link to={`/detail/${book.id}`}>{book.title}</Link>
-                    </th>
-                    <td>{book.author}</td>
-                    <td>US$ {book.price}</td>
-                    <td>
-                      <button
-                        className="button is-danger"
-                        onClick={() => {
-                          removeBookFromCart(book.id);
-                        }}
-                      >
-                        -
-                      </button>
-                      <span className="quantity">
-                        <strong>{book.quantity} </strong>
-                      </span>
-                      <button
-                        className="button is-primary"
-                        onClick={() => {
-                          addBookToCart(book.id);
-                        }}
-                      >
-                        +
-                      </button>
-                    </td>
-                  </tr>
-                </>
+                <tr key={book.id}>
+                  <th>
+                    <Link to={`/detail/${book.id}`}>{book.title}</Link>
+                  </th>
+                  <td>{book.author}</td>
+                  <td>US$ {book.price}</td>
+                  <td>
+                    <button
+                      className="button is-danger is-small"
+                      onClick={() => {
+                        removeBookFromCart(book.id);
+                      }}
+                    >
+                      -
+                    </button>
+                    <span className="quantity">
+                      <strong>{book.quantity} </strong>
+                    </span>
+                    <button
+                      className="button is-primary is-small"
+                      onClick={() => {
+                        addBookToCart(book.id);
+                      }}
+                    >
+                      +
+                    </button>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

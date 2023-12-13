@@ -19,13 +19,11 @@ function Footer() {
           </Link>
         </div>
         <div className="column">
-          <Link to="/contacto">
-            <h3>Contactenos</h3>
-          </Link>
-          <h3>direccion</h3>
+          <a href="#arriba">⬆︎⬆︎</a>
+          <br />
+          <h3>Direccion: Calle falsa 123</h3>
           <h3>pflibrosgrupo07@gmail.com</h3>
-          <h3>numero de contacto</h3>
-          <a href="#arriba">Arriba</a>
+          <h3>Numero de contacto:</h3>
         </div>
       </div>
       <div className="content has-text-centered">

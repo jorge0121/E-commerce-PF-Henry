@@ -82,6 +82,27 @@ export function FilterHandler() {
     }
   };
 
+  const handlerClearFilters = async () => {
+    dispatch(setBookAuthor({ author: "" }));
+    dispatch(setBookAño({ year: "" }));
+    dispatch(setBookGenero({ gender: "" }));
+    dispatch(setBookValue({ value: "" }));
+    dispatch(setBookOrganization({ organization: "" }));
+    dispatch(setBookPage({ page: 1 }));
+    try {
+      const { data } = await axios(
+        `https://server-pf.onrender.com/book?page=${page}`
+      );
+      if (data) {
+        const totalPages = Math.ceil(data.count / 4);
+        dispatch(setTotalData(totalPages));
+        dispatch(setBook(data.rows));
+      }
+    } catch (error) {
+      console.log("errorAxios", error.message);
+    }
+  };
+
   return {
     handlerFilter,
     handlerAutorChange,
@@ -89,5 +110,6 @@ export function FilterHandler() {
     handlerGenderChange,
     handlerSortChange,
     handlerSort,
+    handlerClearFilters,
   };
 }

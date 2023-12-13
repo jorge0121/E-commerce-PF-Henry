@@ -68,18 +68,18 @@ function Home() {
 
         <div className="column">
           {books.length === 0 && totalData === 1 ? (
-            <>
+            <div className="content">
               <h3>Lo sentimos, al momento no contamos con ese libro</h3>
               <h1>🥲</h1>
-            </>
+            </div>
           ) : books.length === 0 && (author || year || gender) ? (
-            <>
+            <div className="content">
               <h3>
                 Lo sentimos, al momento no contamos con libros que tengan esas
                 características
               </h3>
               <h1>🥲</h1>
-            </>
+            </div>
           ) : (
             <div className="containerB">
               <Cards />

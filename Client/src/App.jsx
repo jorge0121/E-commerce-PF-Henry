@@ -6,7 +6,6 @@ import Detail from "./View/Detail/Detail";
 import Footer from "./component/Footer/Footer";
 import NavBar from "./component/NavBar/NavBar";
 import AdminView from "./View/adminView/adminView";
-import Contactenos from "../src/component/Contactenos/Contactenos";
 import FormCreateBook from "./component/FormCreateBook/FormCreateBook";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -31,7 +30,6 @@ function App() {
         <Route path="/carrito" element={<Cart />} />
         <Route path="/admin" element={<AdminView />} />
         <Route exact path="/bulke" element={<FormCreateBook />} />
-        <Route exact path="/contacto" element={<Contactenos />} />
       </Routes>
       {location.pathname !== "/admin" && <Footer />}
     </>

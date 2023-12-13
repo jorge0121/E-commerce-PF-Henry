@@ -1,5 +1,5 @@
 import "./FormSelect.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "../../handlers/FilterHandler/Filter";
 import { FilterHandler } from "../../handlers/FilterHandler/FilterHandler";
@@ -7,6 +7,7 @@ import {
   setBookAuthor,
   setBookAño,
   setBookGenero,
+  setBookValue,
 } from "../../redux/reducers/BookFilter/BookFilterSlice";
 
 function FormSelect() {
@@ -17,6 +18,7 @@ function FormSelect() {
     (state) => state.bookFilter
   );
 
+  const [filter, setFilter] = useState("");
   const { sortOption } = Filter();
   const {
     handlerFilter,
@@ -25,6 +27,7 @@ function FormSelect() {
     handlerGenderChange,
     handlerSortChange,
     handlerSort,
+    handlerClearFilters,
   } = FilterHandler();
 
   useEffect(() => {
@@ -151,16 +154,35 @@ function FormSelect() {
           <label className="label">Ordenar por...</label>
           <div className="control">
             <div className="select is-fullwidth">
-              <select name="sort" value={value} onChange={handlerSortChange}>
+              <select
+                name="value"
+                value={value}
+                onChange={(e) => {
+                  handlerSortChange(e);
+                  setFilter(e.target.value);
+                }}
+              >
                 {sortOption.map((item) => (
                   <option key={item.value} value={item.value}>
-                    {item.value}
+                    {item.label}
                   </option>
                 ))}
               </select>
             </div>
           </div>
         </div>
+        {value && (
+          <div className="control">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                checked={value}
+                onChange={() => dispatch(setBookValue({ value: "" }))}
+              />
+              {filter}
+            </label>
+          </div>
+        )}
       </li>
       <button
         disabled={!value ? true : false}
@@ -169,6 +191,15 @@ function FormSelect() {
       >
         Ordenar
       </button>
+      <div className="clear">
+        <button
+          disabled={author || year || gender || value ? false : true}
+          className="button is-primary is-hovered "
+          onClick={handlerClearFilters}
+        >
+          Borrar filtros
+        </button>
+      </div>
     </ul>
   );
 }

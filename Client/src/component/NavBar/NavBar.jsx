@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar} id="arriba">
-      {location.pathname === "/admin" ? (
+      {location.pathname === "/admin" || location.pathname === "/bulke" ? (
         <>
           <ul className={styles.navlinks}>
             <li>
@@ -39,6 +39,11 @@ const Navbar = () => {
             <li>
               <Link to="/bulke">Crear Libro</Link>
             </li>
+            {location.pathname === "/bulke" ? (
+              <li>
+                <Link to="/admin">Atras</Link>
+              </li>
+            ) : null}
           </ul>
         </>
       ) : (
