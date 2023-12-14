@@ -11,7 +11,7 @@ const { Sequelize } = require("sequelize");
 
 // Conexion
 const database = new Sequelize(
-  `postgres.railway.internal`,
+  `viaduct.proxy.rlwy.net:59694`,
   { logging: false }
 );
 
