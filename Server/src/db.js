@@ -11,7 +11,7 @@ const { Sequelize } = require("sequelize");
 
 // Conexion
 const database = new Sequelize(
-  `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`,
+  `postgres.railway.internal`,
   { logging: false }
 );
 
