@@ -26,7 +26,7 @@ const UserList = () => {
     setUsers(updatedUsers);
     try {
       await axios.put(
-        `https://server-pf.onrender.com/user/update?userId=${user.id}`,
+        `https://e-commerce-pf-henry.onrender.com/user/update?userId=${user.id}`,
         updatedUsers.find((b) => b.id === user.id)
       );
     } catch (error) {
@@ -41,7 +41,7 @@ const UserList = () => {
     setUsers(updatedUsers);
     try {
       await axios.put(
-        `https://server-pf.onrender.com/user/update?userId=${user.id}`,
+        `https://e-commerce-pf-henry.onrender.com/user/update?userId=${user.id}`,
         updatedUsers.find((b) => b.id === user.id)
       );
     } catch (error) {
@@ -53,7 +53,7 @@ const UserList = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://server-pf.onrender.com/user?page=${page}`
+          `https://e-commerce-pf-henry.onrender.com/user?page=${page}`
         );
         if (response) {
           const totalPages = Math.ceil(response.data.count / 8);

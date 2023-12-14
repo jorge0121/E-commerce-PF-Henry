@@ -14,7 +14,7 @@ export function DetailHandler() {
     try {
       if (commentation) {
         const { data } = await axios.post(
-          `https://server-pf.onrender.com/comment?bookId=${detail.id}&userId=${id}`,
+          `https://e-commerce-pf-henry.onrender.com/comment?bookId=${detail.id}&userId=${id}`,
           commentation
         );
 

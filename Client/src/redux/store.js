@@ -6,11 +6,12 @@ import bookReducer from "./reducers/Books/booksSlice";
 import bookDetailReducer from "./reducers/BookDetail/BookDetailSlice";
 import bookFilterReducer from "./reducers/BookFilter/BookFilterSlice";
 import userReducer from "./reducers/Users/UserSlice";
+import sendUserReducer from "./reducers/SendUser/sendUserSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user"],
+  whitelist: ["user", "sendUser"],
 };
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   bookDetail: bookDetailReducer,
   bookFilter: bookFilterReducer,
   user: userReducer,
+  sendUser: sendUserReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

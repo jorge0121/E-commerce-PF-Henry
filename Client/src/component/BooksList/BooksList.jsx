@@ -43,7 +43,7 @@ const BooksList = () => {
     // Hacer la solicitud PUT para actualizar el estado en el servidor
     try {
       await axios.put(
-        `https://server-pf.onrender.com/book/update/${book.id}`,
+        `https://e-commerce-pf-henry.onrender.com/book/update/${book.id}`,
         updatedBooks.find((b) => b.id === book.id)
       );
     } catch (error) {
@@ -54,7 +54,7 @@ const BooksList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://server-pf.onrender.com/book?page=${page}`);
+        const response = await axios.get(`https://e-commerce-pf-henry.onrender.com/book?page=${page}`);
         if(response){
           const totalPages = Math.ceil(response.data.count / 4);
             setTotalData(totalPages);

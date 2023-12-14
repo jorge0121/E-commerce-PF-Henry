@@ -17,10 +17,10 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-//https://server-pf.onrender.com/user?page=1  ==>GET para admins
-//https://server-pf.onrender.com/user/update?userId=ID DEL USUARIO A MODIFICAR ==>modificar usuarios
-//https://server-pf.onrender.com/comment?bookId=ID DEL LIBRO&userId=ID DEL USUARIO QUE COMENTA  ==>post de comentarios
-//https://server-pf.onrender.com/book/update/:id ID DEL USUARIO A MODIFICAR (el id llega por params) ==>modificar libros
+//https://e-commerce-pf-henry.onrender.com/user?page=1  ==>GET para admins
+//https://e-commerce-pf-henry.onrender.com/user/update?userId=ID DEL USUARIO A MODIFICAR ==>modificar usuarios
+//https://e-commerce-pf-henry.onrender.com/comment?bookId=ID DEL LIBRO&userId=ID DEL USUARIO QUE COMENTA  ==>post de comentarios
+//https://e-commerce-pf-henry.onrender.com/book/update/:id ID DEL USUARIO A MODIFICAR (el id llega por params) ==>modificar libros
 
 function RegisterLogin() {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ function RegisterLogin() {
         const email = credentials.user.email;
         try {
           const { data } = await axios.post(
-            `https://server-pf.onrender.com/user`,
+            `https://e-commerce-pf-henry.onrender.com/user`,
             {
               id,
               name,
@@ -96,7 +96,7 @@ function RegisterLogin() {
         if (id) {
           try {
             const { data } = await axios(
-              `https://server-pf.onrender.com/user/client?id=${id}`
+              `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
             );
             if (data) {
               const admin = data.admin;
@@ -131,7 +131,7 @@ function RegisterLogin() {
         if (id) {
           try {
             const { data } = await axios(
-              `https://server-pf.onrender.com/user/client?id=${id}`
+              `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
             );
             if (data) {
               const admin = data.admin;
@@ -144,7 +144,7 @@ function RegisterLogin() {
             } else {
               try {
                 const { data } = await axios.post(
-                  `https://server-pf.onrender.com/user`,
+                  `https://e-commerce-pf-henry.onrender.com/user`,
                   {
                     id,
                     name,
@@ -154,7 +154,7 @@ function RegisterLogin() {
                 if (data) {
                   try {
                     const { data } = await axios(
-                      `https://server-pf.onrender.com/user/client?id=${id}`
+                      `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
                     );
                     if (data) {
                       const admin = data.admin;

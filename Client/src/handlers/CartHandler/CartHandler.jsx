@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setUserBooks,
@@ -5,11 +6,16 @@ import {
   removeUserBooks,
   updateUserBooks,
 } from "../../redux/reducers/Users/UserSlice";
-import axios from "axios";
+import {
+  setSendUser,
+  unSetSendUser,
+} from "../../redux/reducers/SendUser/sendUserSlice";
 
 function CartHandler() {
   const dispatch = useDispatch();
   const { userBooks, id, email, idBooks } = useSelector((state) => state.user);
+  const { totalUSD } = useSelector((state) => state.sendUser);
+
   const books = useSelector((state) => state.book.books);
 
   const putOrRemoveBookToCart = (id) => {
@@ -41,11 +47,18 @@ function CartHandler() {
 
   const buyBooks = async () => {};
 
-  const checkBook = async () => {
+  const checkBook = async (userData) => {
+    if (userData) {
+      const userName = userData.name;
+      const userEmail = userData.email;
+      const userAddress = userData.address;
+      const userPhone = userData.phone;
+      dispatch(setSendUser({ userName, userEmail, userAddress, userPhone }));
+    }
     if (id && email) {
       try {
         await axios.put(
-          `https://server-pf.onrender.com/user/update?userId=${id}`,
+          `https://e-commerce-pf-henry.onrender.com/user/update?userId=${id}`,
           { idBooks }
         );
       } catch (error) {
@@ -53,20 +66,28 @@ function CartHandler() {
       }
     }
     dispatch(unSetUserBooks());
+
     try {
-      const Endpoint = "https://server-pf.onrender.com/checkout/session"; //CAMBIAR POR LA RUTA AL BACK EN RENDER
+      const Endpoint = "https://e-commerce-pf-henry.onrender.com/checkout/session"; //CAMBIAR POR LA RUTA AL BACK EN RENDER
 
-      const data = userBooks.map((book) => ({
-        productName: book.title,
-        productDescription: book.description,
-        unitAmount: book.price,
-      }));
+      // const data = userBooks.map((book) => ({
+      //   productName: book.title,
+      //   productDescription: book.description,
+      //   unitAmount: book.price,
+      // }));
 
-      const response = await axios.post(Endpoint, data[0]);
+      const data = {
+        productName: userBooks.map((book) => book.title).join(", "),
+        unitAmount: totalUSD,
+      };
+      console.log("data", data);
+
+      const response = await axios.post(Endpoint, data);
 
       console.log("response", response.data);
       if (response.data) {
         window.location.href = response.data;
+        dispatch(unSetSendUser());
       }
     } catch (error) {
       console.log(error);

@@ -1,4 +1,3 @@
-const express = require("express")
 const Stripe = require("stripe");
 const stripe = new Stripe(
   "sk_test_51OLAvzH7aI4EeVzAErUvtTrVVcJ7c4L05sofuZUqYmynnxgmFzOzccL0h4eqNcUqMq3YKAHalSNcpcuqSdcPRzxr00ui5lhVT5"
@@ -25,8 +24,8 @@ const createSession = async (req, res) => {
         }
       ],
       mode: "payment",
-      success_url: "https://server-pf.onrender.com/checkout/success",
-      cancel_url: "https://server-pf.onrender.com/checkout/cancel",
+      success_url: "https://e-commerce-pf-henry.onrender.com/checkout/success",
+      cancel_url: "https://e-commerce-pf-henry.onrender.com/checkout/cancel",
     });
 
     return res.json(session.url);

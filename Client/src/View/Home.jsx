@@ -26,7 +26,7 @@ function Home() {
       const homeFuntion = async () => {
         try {
           const { data } = await axios(
-            `https://server-pf.onrender.com/book?page=${page}`
+            `https://e-commerce-pf-henry.onrender.com/book?page=${page}`
           );
           if (data) {
             const totalPages = Math.ceil(data.count / 4);
@@ -44,7 +44,7 @@ function Home() {
   useEffect(() => {
     const cositas = async () => {
       const { data } = await axios(
-        "https://server-pf.onrender.com/book/author-year-gender"
+        "https://e-commerce-pf-henry.onrender.com/book/author-year-gender"
       );
       if (data) {
         dispatch(setDataA(data.dataA));

@@ -29,7 +29,7 @@ const EditFormModal = ({ isOpen, onClose, book, onUpdate }) => {
   const handleUpdate = async (data) => {
     try {
       const updatedBook = { ...book, ...data };
-      const response = await axios.put(`https://server-pf.onrender.com/book/update/${book.id}`, updatedBook);
+      const response = await axios.put(`https://e-commerce-pf-henry.onrender.com/book/update/${book.id}`, updatedBook);
     
       onUpdate(updatedBook);
       onClose();

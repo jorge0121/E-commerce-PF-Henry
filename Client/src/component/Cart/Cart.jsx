@@ -1,13 +1,16 @@
 import "./Cart.css";
+import FormBuy from "../FormBuy/FormBuy";
 import CartHandler from "../../handlers/CartHandler/CartHandler";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIdBooks } from "../../redux/reducers/Users/UserSlice";
-import { Link } from "react-router-dom";
+import { setTotalUSD } from "../../redux/reducers/SendUser/sendUserSlice";
 
 function Cart() {
   const dispatch = useDispatch();
   const { userBooks, totalBooks } = useSelector((state) => state.user);
+  const { totalUSD } = useSelector((state) => state.sendUser);
   const {
     removeBookFromCart,
     addBookToCart,
@@ -16,11 +19,11 @@ function Cart() {
     checkBook,
   } = CartHandler();
 
-  const [resultado, setResultado] = useState(0);
+  const [buy, setBuy] = useState(false);
 
   useEffect(() => {
     const booksBack = userBooks.map((item) => item.price * item.quantity);
-    setResultado(booksBack.reduce((suma, numero) => suma + numero, 0));
+    dispatch(setTotalUSD(booksBack.reduce((suma, numero) => suma + numero, 0)));
   }, [totalBooks]);
 
   useEffect(() => {
@@ -86,16 +89,22 @@ function Cart() {
               Cantidad total: {totalBooks}
             </span>
             <span className="tag is-success is-large">
-              Total US$: {resultado}
+              Total US$: {totalUSD}
             </span>
           </div>
           <br />
           <button onClick={clearBookCart} className="button is-danger clean ">
             Limpiar carrito
           </button>
-          <button onClick={checkBook} className="button is-primary buy">
-            Comprar ahora
+          <button
+            onClick={() => {
+              setBuy(!buy);
+            }}
+            className="button is-primary buy"
+          >
+            {buy ? "Volver" : "Comprar ahora"}
           </button>
+          {buy ? <FormBuy /> : null}
         </>
       )}
     </>

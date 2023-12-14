@@ -26,7 +26,7 @@ function Detail() {
     const detailHandler = async (id) => {
       try {
         const { data } = await axios(
-          `https://server-pf.onrender.com/book/${id}`
+          `https://e-commerce-pf-henry.onrender.com/book/${id}`
         );
         if (data) {
           dispatch(setBookDetail(data));
