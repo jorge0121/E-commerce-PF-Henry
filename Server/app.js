@@ -4,7 +4,7 @@ const server = require("./src/server")
 
 
 database.sync({ force: true}).then(() => {
-    server.listen(49375, () => {
+    server.listen(5432, () => {
       console.log("Server listening on port 49375");
     })
     }).catch(error => console.error(error))
