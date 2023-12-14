@@ -5,6 +5,7 @@ const CreateBook = require("../handlers/CreateBook");
 const filteredBooks = require("../handlers/filteredBooks");
 const sortB = require("../handlers/sortB");
 const filtersAutYearGen = require("../handlers/filtersAutYearGen");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 const { Books } = require("../db");
@@ -19,7 +20,7 @@ router.get("/", async (req, res) => {
   if (name) {
     const allBook = await Books.findAll({
       where: {
-        title: name,
+        title: {  [Op.iLike || Op.like]: `%${name}%`,},
       },
     });
     res.status(200).json(allBook);

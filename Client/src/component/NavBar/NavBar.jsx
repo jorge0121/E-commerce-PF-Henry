@@ -16,6 +16,7 @@ const Navbar = () => {
 
   const handleSearch = async () => {
     try {
+      if (searchTerm.trim() !== ""){
       const { data } = await axios(
         `https://e-commerce-pf-henry.onrender.com/book?name=${searchTerm}`
       );
@@ -23,6 +24,7 @@ const Navbar = () => {
         dispatch(setBook(data));
         dispatch(setTotalData(1));
       }
+    }
     } catch (error) {
       console.log("error", error);
     }
