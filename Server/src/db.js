@@ -11,7 +11,7 @@ const { Sequelize } = require("sequelize");
 
 // Conexion
 const database = new Sequelize(
-  `postgresql://postgres:1-ddDgB533*fDA*e35dF-gbaGe33DGcA@viaduct.proxy.rlwy.net:59694/railway`,
+  `postgresql://postgres:-3EADg6-f3Df1g*bFDb4BC*23GeDbBag@viaduct.proxy.rlwy.net:49375/railway`,
   { logging: false }
 );
 
