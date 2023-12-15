@@ -28,7 +28,7 @@ function Paginado() {
       >
         Página Anterior
       </button>
-      <span>
+      <span className="spanPaginado">
         Página {page} de {totalData}
       </span>
       <button
