@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import logo from "./../../img/logo2.png";
+import { NavLink } from "react-router-dom";
+
 
 const Navbar = () => {
   const { id, admin } = useSelector((state) => state.user);
@@ -13,6 +15,8 @@ const Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
+ 
+ 
 
   const handleSearch = async () => {
     try {
@@ -29,9 +33,12 @@ const Navbar = () => {
       console.log("error", error);
     }
   };
+  const handleNavLinkClick=()=>{
+    rerenderHome();
+  }
 
   return (
-    <nav className={styles.navbar} id="arriba">
+    <nav  className={styles.navbar} id="arriba">
       {location.pathname === "/admin" || location.pathname === "/bulke" ? (
         <>
           <ul className={styles.navlinks}>
@@ -69,7 +76,7 @@ const Navbar = () => {
           </div>
           <ul className={styles.navlinks}>
             <li>
-              <Link to="/">Inicio</Link>
+            <NavLink to="/" onClick={handleNavLinkClick}>Inicio</NavLink>
             </li>
             {id && admin === true ? (
               <li>

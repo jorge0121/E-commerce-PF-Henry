@@ -13,7 +13,7 @@ import {
   setTotalData,
 } from "../redux/reducers/Books/booksSlice";
 
-function Home() {
+function Home({ rerenderKey }) {
   const { author, year, gender, value, organization, page } = useSelector(
     (state) => state.bookFilter
   );
@@ -56,7 +56,7 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <div key={rerenderKey}>
       <br />
       <div className="page">
         <Paginado />
@@ -90,7 +90,7 @@ function Home() {
       <div className="pageBottom">
         <Paginado />
       </div>
-    </>
+    </div>
   );
 }
 
