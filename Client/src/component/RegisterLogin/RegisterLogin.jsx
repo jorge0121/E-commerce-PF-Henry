@@ -133,7 +133,6 @@ function RegisterLogin() {
             const { data } = await axios(
               `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
             );
-            console.log("data1", data);
             if (data) {
               const admin = data.admin;
               const banned = data.banned;
@@ -142,9 +141,7 @@ function RegisterLogin() {
               if (idBooks) {
                 dispatch(setIdBooks({ idBooks }));
               }
-            }
-          } catch (error) {
-            if (error) {
+            } else {
               try {
                 const { data } = await axios.post(
                   `https://e-commerce-pf-henry.onrender.com/user`,
@@ -154,7 +151,6 @@ function RegisterLogin() {
                     email,
                   }
                 );
-                console.log("data2", data);
                 if (data) {
                   try {
                     const { data } = await axios(
@@ -169,7 +165,6 @@ function RegisterLogin() {
                         dispatch(setIdBooks({ idBooks }));
                       }
                     }
-                    console.log("data3", data);
                   } catch (error) {
                     console.log("errorAxios", error.message);
                   }
@@ -178,7 +173,8 @@ function RegisterLogin() {
                 console.log("errorAxios", error.message);
               }
             }
-            // console.log("errorAxios: ", error.message);
+          } catch (error) {
+            console.log("errorAxios: ", error.message);
           }
         }
       }

@@ -1,7 +1,11 @@
+import { unSetUser } from "../../redux/reducers/Users/UserSlice";
+import { useDispatch } from "react-redux";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 
 function Banned() {
+  const dispatch = useDispatch();
+
   const logoutHandler = async () => {
     await signOut(auth);
     dispatch(unSetUser());

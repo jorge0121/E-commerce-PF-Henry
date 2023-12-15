@@ -5,7 +5,7 @@
     "gender": "literatura",
     "image": "https://images.cdn3.buscalibre.com/fit-in/360x360/61/8d/618d227e8967274cd9589a549adff52d.jpg",
     "year": "1967",
-    "price": "150",
+    "price": "15.00",
     "pages": "123",
     "active": true,
     "description": "ad"
@@ -16,7 +16,7 @@
     "gender": "literatura",
     "image": "https://th.bing.com/th/id/OIP.ZWWakd8E8seSnyWA6VAlTAHaLb?w=183&h=282&c=7&r=0&o=5&pid=1.7",
     "year": "2017",
-    "price": "198",
+    "price": "19.08",
     "pages": "123",
     "active": true,
     "description": "ds"
@@ -27,7 +27,7 @@
     "gender": "literatura",
     "image": "https://th.bing.com/th/id/OIP.ct_nUUa1WxKrF05OYs_7MQAAAA?rs=1&pid=ImgDetMain",
     "year": "1978",
-    "price": "145",
+    "price": "14.05",
     "pages": "123",
     "active": true,
     "description": "sd"
@@ -40,7 +40,7 @@
     "year": "2014",
     "pages": "123",
     "active": true,
-    "price": "570",
+    "price": "57.00",
     "description": "ds"
   },
   {
@@ -49,7 +49,7 @@
     "gender": "literatura",
     "image": "https://th.bing.com/th/id/OIP.XMSWs8a0GqpfjgzCUaEf3wHaKA?rs=1&pid=ImgDetMain",
     "year": "2018",
-    "price": "489",
+    "price": "48.09",
     "pages": "123",
     "active": true,
     "description": "sd"
@@ -60,7 +60,7 @@
     "gender": "literatura",
     "image": "https://borabooks.com.ar/wp-content/uploads/2020/10/un-mar-de-lagrimas.jpg",
     "year": "1945",
-    "price": "150",
+    "price": "15.00",
     "pages": "123",
     "active": true,
     "description": "sd"
@@ -71,7 +71,7 @@
     "gender": "historia",
     "image": "https://th.bing.com/th/id/OIP.TCdqB0yg6tsb5xPMkYNjRQHaLH?rs=1&pid=ImgDetMain",
     "year": "2010",
-    "price": "350",
+    "price": "35.00",
     "pages": "123",
     "active": true,
     "description": "ds"
@@ -82,7 +82,7 @@
     "gender": "literatura",
     "image": "https://th.bing.com/th/id/OIP.SVvgZJjJVfZFu05lJG6bWAAAAA?w=183&h=263&c=7&r=0&o=5&pid=1.7",
     "year": "1995",
-    "price": "263",
+    "price": "26.03",
     "pages": "323",
     "active": true,
     "description": "s"
@@ -93,7 +93,7 @@
     "gender": "historia",
     "image": "https://th.bing.com/th/id/OIP.pS4FOyRbh4O6UR9iEW_eLgHaLm?rs=1&pid=ImgDetMain",
     "year": "2014",
-    "price": "350",
+    "price": "35.00",
     "pages": "123",
     "active": true,
     "description": "ds"
@@ -106,7 +106,7 @@
     "year": "1995",
     "pages": "323",
     "active": true,
-    "price": "148",
+    "price": "14.08",
     "description": "sd"
   },
   {
@@ -237,7 +237,7 @@
     "gender": "Misterio",
     "image": "https://m.media-amazon.com/images/I/51odjU4GHpL.jpg",
     "year": 2019,
-    "price": 15.99,
+    "price": 15.09,
     "pages": 250,
     "active": true,
     "description": "Descubre los secretos ocultos en un bosque mágico."
