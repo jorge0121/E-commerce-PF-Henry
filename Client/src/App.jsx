@@ -31,10 +31,10 @@ function App() {
 
   return (
     <>
-      {location.pathname !== "/admin" && <NavBar rerenderHome={rerenderHome} />}
+      {/*location.pathname !== "/admin" && <NavBar rerenderHome={rerenderHome} />*/}
       {/* {location.pathname !== "/admin"  && <NavBar />} */}
       {location.pathname !== "/admin" && location.pathname !== "/banned" ? (
-        <NavBar />
+        <NavBar rerenderHome={rerenderHome}/>
       ) : null}
 
       <Routes>
