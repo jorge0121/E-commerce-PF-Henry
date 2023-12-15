@@ -55,7 +55,7 @@ function FormSelect() {
                 value={author}
                 onChange={handlerAutorChange}
               >
-                <option label="Filtrar por autor"></option>
+                <option label="Filtrar..."></option>
                 {dataA.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -85,7 +85,7 @@ function FormSelect() {
           <div className="control">
             <div className="select is-fullwidth">
               <select name="year" value={year} onChange={handlerYearChange}>
-                <option label="Filtrar por año"></option>
+                <option label="Filtrar..."></option>
                 {dataY.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -119,7 +119,7 @@ function FormSelect() {
                 value={gender}
                 onChange={handlerGenderChange}
               >
-                <option label="Filtrar por genero"></option>
+                <option label="Filtrar..."></option>
                 {dataG.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -163,7 +163,7 @@ function FormSelect() {
                   setFilter(e.target.value);
                 }}
               >
-                <option label="Ordenar por..."></option>
+                <option label="Ordenar..."></option>
                 {sortOption.map((item) => (
                   <option key={item.value} value={item.value}>
                     {item.label}
