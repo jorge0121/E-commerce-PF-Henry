@@ -221,7 +221,8 @@ function RegisterLogin() {
               {!ingresar ? (
                 <>
                   <hr />
-                  <h2>REGISTRARSE</h2>
+                  <h1>REGISTRARSE</h1>
+                  <br />
                   <label htmlFor="emailRegis">Correo: </label>
                   <input
                     id="emailRegis"
@@ -262,7 +263,8 @@ function RegisterLogin() {
               ) : (
                 <>
                   <hr />
-                  <h2>INGRESAR</h2>
+                  <h1>INGRESAR</h1>
+                  <br />
                   <label htmlFor="emailLog">Correo: </label>
                   <input
                     id="emailLog"

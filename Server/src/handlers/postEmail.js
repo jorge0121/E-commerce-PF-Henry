@@ -1,6 +1,12 @@
 const nodemailer = require("nodemailer");
 
-const postEmail = async (userEmail, totalUSD, booksName) => {
+const postEmail = async (
+  userEmail,
+  totalUSD,
+  booksName,
+  userName,
+  userAddress
+) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -15,7 +21,7 @@ const postEmail = async (userEmail, totalUSD, booksName) => {
     from: "Factura <pflibrosgrupo07@gmail.com>",
     to: `${userEmail}`,
     subject: "Factura pf-libros",
-    text: `Este es el cuerpo del correo que lleva el ${totalUSD} y el ${booksName}`,
+    text: `Hola, ${userName} tu compra de ${booksName} por un total de ${totalUSD} ha sido exitosa, tus productos seran enviados a la direccion ${userAddress}. Permanece atento a cualquier cambio en el estado del pedido.`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

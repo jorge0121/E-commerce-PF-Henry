@@ -22,8 +22,12 @@ function Cart() {
   const [buy, setBuy] = useState(false);
 
   useEffect(() => {
+    // const booksBack = userBooks.map((item) => item.price * item.quantity);
+    // dispatch(setTotalUSD(booksBack.reduce((suma, numero) => suma + numero, 0)));
     const booksBack = userBooks.map((item) => item.price * item.quantity);
-    dispatch(setTotalUSD(booksBack.reduce((suma, numero) => suma + numero, 0)));
+    const totalUSD = booksBack.reduce((suma, numero) => suma + numero, 0);
+    const totalUSDFormatted = totalUSD.toFixed(2);
+    dispatch(setTotalUSD(parseFloat(totalUSDFormatted)));
   }, [totalBooks]);
 
   useEffect(() => {
