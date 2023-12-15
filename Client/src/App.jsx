@@ -28,7 +28,11 @@ function App() {
 
   return (
     <>
-      {location.pathname !== "/admin" && <NavBar />}
+      {/* {location.pathname !== "/admin"  && <NavBar />} */}
+      {location.pathname !== "/admin" && location.pathname !== "/banned" ? (
+        <NavBar />
+      ) : null}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />

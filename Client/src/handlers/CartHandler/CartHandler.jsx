@@ -71,16 +71,16 @@ function CartHandler() {
       const Endpoint =
         "https://e-commerce-pf-henry.onrender.com/checkout/session"; //CAMBIAR POR LA RUTA AL BACK EN RENDER
 
-      const data = userBooks.map((book) => ({
-        productName: book.title,
-        productDescription: book.description,
-        unitAmount: totalUSD,
-      }));
-
-      // const data = {
-      //   productName: userBooks.map((book) => book.title).join(", "),
+      // const data = userBooks.map((book) => ({
+      //   productName: book.title,
+      //   productDescription: book.description,
       //   unitAmount: totalUSD,
-      // };
+      // }));
+
+      const data = {
+        productName: userBooks.map((book) => book.title).join(", "),
+        unitAmount: totalUSD,
+      };
       console.log("data", data);
 
       const response = await axios.post(Endpoint, data);

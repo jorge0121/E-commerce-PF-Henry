@@ -1,7 +1,8 @@
-import { unSetUser } from "../../redux/reducers/Users/UserSlice";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
+import { auth } from "../../firebase-config";
+import { unSetUser } from "../../redux/reducers/Users/UserSlice";
 
 function Banned() {
   const dispatch = useDispatch();
@@ -14,10 +15,12 @@ function Banned() {
   return (
     <div className="content">
       <h1>
-        Tu perfil esta baneado, favor regresa a la pagina Home desde el
+        Tu perfil esta baneado, favor regresa a la pagina principal desde el
         siguiente boton:
       </h1>
-      <button onClick={logoutHandler}>Atras</button>
+      <button className="button is-primary" onClick={logoutHandler}>
+        <Link to="/">Atras</Link>
+      </button>
     </div>
   );
 }
