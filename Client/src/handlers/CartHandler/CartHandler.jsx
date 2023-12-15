@@ -81,8 +81,6 @@ function CartHandler() {
         productName: userBooks.map((book) => book.title).join(", "),
         unitAmount: totalUSD,
       };
-      console.log("data", data);
-
       const response = await axios.post(Endpoint, data);
 
       console.log("response", response.data);
