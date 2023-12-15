@@ -11,10 +11,11 @@ const { Sequelize } = require("sequelize");
 
 // Conexion
 const database = new Sequelize(
-  `postgresql://postgres:-3EADg6-f3Df1g*bFDb4BC*23GeDbBag@viaduct.proxy.rlwy.net:49375/railway`,
+  `postgres://db_e_commerce_8ezv_user:mGIyTlONZ8LGmAbkxouDZLf7Erwpt9Xm@dpg-clu5q9a1hbls73ea8nk0-a/db_e_commerce_8ezv`,
   { logging: false }
 );
 
+//postgresql://postgres:-3EADg6-f3Df1g*bFDb4BC*23GeDbBag@viaduct.proxy.rlwy.net:49375/railway
 ModelsBook(database);
 ModelsUsers(database);
 ModelsComments(database);
