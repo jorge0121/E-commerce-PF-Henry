@@ -19,6 +19,7 @@ function App() {
   const [rerenderKey, setRerenderKey] = useState(0);
   let location = useLocation();
   const navigate = useNavigate();
+  
   const rerenderHome = () => {
     setRerenderKey((prevKey) => prevKey + 1);
   };
@@ -33,8 +34,6 @@ function App() {
 
   return (
     <>
-      {/*location.pathname !== "/admin" && <NavBar rerenderHome={rerenderHome} />*/}
-      {/* {location.pathname !== "/admin"  && <NavBar />} */}
       {location.pathname !== "/admin" && location.pathname !== "/banned" ? (
         <NavBar rerenderHome={rerenderHome}/>
       ) : null}
