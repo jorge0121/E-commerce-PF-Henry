@@ -82,16 +82,15 @@ function CartHandler() {
         productName: userBooks.map((book) => book.title).join(", "),
         unitAmount: amountInCents,
       };
-      console.log("data", data);
       const response = await axios.post(Endpoint, data);
 
       if (response.data) {
-        const { data } = await axios.post(
-          `https://e-commerce-pf-henry.onrender.com/send-email?userEmail=${userEmail}&totalUSD=${totalUSD}&booksName=${booksName}&userName=${userName}&userAddress=${userAddress}`
-        );
-        if (data) {
-          dispatch(unSetSendUser());
-        }
+        // const { data } = await axios.post(
+        //   `https://e-commerce-pf-henry.onrender.com/send-email?userEmail=${userEmail}&totalUSD=${totalUSD}&booksName=${booksName}&userName=${userName}&userAddress=${userAddress}`
+        // );
+        // if (data) {
+        // }
+        dispatch(unSetSendUser());
         window.location.href = response.data;
       }
     } catch (error) {
