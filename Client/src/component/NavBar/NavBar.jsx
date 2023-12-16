@@ -8,37 +8,34 @@ import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import logo from "./../../img/logo2.png";
 import { NavLink } from "react-router-dom";
 
-
 const Navbar = () => {
   const { id, admin } = useSelector((state) => state.user);
 
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
- 
- 
 
   const handleSearch = async () => {
     try {
-      if (searchTerm.trim() !== ""){
-      const { data } = await axios(
-        `https://e-commerce-pf-henry.onrender.com/book?name=${searchTerm}`
-      );
-      if (data) {
-        dispatch(setBook(data));
-        dispatch(setTotalData(1));
+      if (searchTerm.trim() !== "") {
+        const { data } = await axios(
+          `https://e-commerce-pf-henry.onrender.com/book?name=${searchTerm}`
+        );
+        if (data) {
+          dispatch(setBook(data));
+          dispatch(setTotalData(1));
+        }
       }
-    }
     } catch (error) {
       console.log("error", error);
     }
   };
-  const handleNavLinkClick=()=>{
+  const handleNavLinkClick = () => {
     rerenderHome();
-  }
+  };
 
   return (
-    <nav  className={styles.navbar} id="arriba">
+    <nav className={styles.navbar} id="arriba">
       {location.pathname === "/admin" || location.pathname === "/bulke" ? (
         <>
           <ul className={styles.navlinks}>
@@ -76,7 +73,9 @@ const Navbar = () => {
           </div>
           <ul className={styles.navlinks}>
             <li>
-            <NavLink to="/" onClick={handleNavLinkClick}>Inicio</NavLink>
+              <NavLink to="/" onClick={handleNavLinkClick}>
+                Inicio
+              </NavLink>
             </li>
             {id && admin === true ? (
               <li>

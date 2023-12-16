@@ -33,7 +33,9 @@ function App() {
 
   return (
     <>
-      {location.pathname !== "/admin" && location.pathname !== "/banned" ? (
+      {location.pathname !== "/admin" &&
+      location.pathname !== "/banned" &&
+      location.pathname !== "/checkout/success" ? (
         <NavBar rerenderHome={rerenderHome} />
       ) : null}
 

@@ -29,7 +29,7 @@ function Success() {
 
       <h3>Gracias por su compra</h3>
       <Link to={"/"}>
-        <button>Volver al inicio</button>
+        <button className="button button is-primary">Volver al inicio</button>
       </Link>
     </div>
   );
