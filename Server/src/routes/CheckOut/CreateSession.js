@@ -24,8 +24,8 @@ const createSession = async (req, res) => {
         }
       ],
       mode: "payment",
-      success_url: "https://e-commerce-pf-henry.vercel.app/checkout/success",
-      cancel_url: "https://e-commerce-pf-henry.vercel.app/checkout/cancel",
+      success_url: "https://e-commerce-pf-henry.onrender.com/checkout/success",
+      cancel_url: "https://e-commerce-pf-henry.onrender.com/checkout/cancel",
     });
 
     return res.json(session.url);
