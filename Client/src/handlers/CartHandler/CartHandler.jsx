@@ -1,9 +1,6 @@
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setSendUser,
-  unSetSendUser,
-} from "../../redux/reducers/SendUser/sendUserSlice";
+import { setSendUser } from "../../redux/reducers/SendUser/sendUserSlice";
 import {
   setUserBooks,
   unSetUserBooks,
@@ -52,8 +49,12 @@ function CartHandler() {
       const userName = userData.name;
       const userEmail = userData.email;
       const userAddress = userData.address;
+      const booksName = userBooks.map((book) => book.title).join(", ");
       const userPhone = userData.phone;
-      dispatch(setSendUser({ userName, userEmail, userAddress, userPhone }));
+
+      dispatch(
+        setSendUser({ userName, userEmail, userAddress, booksName, userPhone })
+      );
     }
     if (id && email) {
       try {

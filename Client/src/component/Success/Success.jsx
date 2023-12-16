@@ -1,33 +1,33 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  unSetSendUser,
-} from "../../redux/reducers/SendUser/sendUserSlice";
-
+import { useDispatch, useSelector } from "react-redux";
+import { unSetSendUser } from "../../redux/reducers/SendUser/sendUserSlice";
 
 function Success() {
-const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  const { totalUSD, userName, userEmail, userAddress } = useSelector(
+  const { totalUSD, userName, userEmail, booksName, userAddress } = useSelector(
     (state) => state.sendUser
   );
-// dispatch(unSetSendUser());
 
   useEffect(() => {
     const sendEmail = async () => {
       const { data } = await axios.post(
-        `https://e-commerce-pf-henry.onrender.com/send-email?userEmail=${userEmail}&totalUSD=${totalUSD}&booksName=&userName=${userName}&userAddress=${userAddress}`
+        `https://e-commerce-pf-henry.onrender.com/send-email?userEmail=${userEmail}&totalUSD=${totalUSD}&booksName=${booksName}&userName=${userName}&userAddress=${userAddress}`
       );
+      if (data) {
+        dispatch(unSetSendUser());
+      }
     };
+    sendEmail();
   }, []);
 
   return (
-    <div>
+    <div className="content">
       <h1>Pago Exitoso</h1>
 
-      <span>Gracias por su compra</span>
+      <h3>Gracias por su compra</h3>
       <Link to={"/"}>
         <button>Volver al inicio</button>
       </Link>

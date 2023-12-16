@@ -10,7 +10,7 @@ import NavBar from "./component/NavBar/NavBar";
 import Banned from "./component/Banned/Banned";
 import AdminView from "./View/adminView/adminView";
 import FormCreateBook from "./component/FormCreateBook/FormCreateBook";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
@@ -19,13 +19,12 @@ function App() {
   const [rerenderKey, setRerenderKey] = useState(0);
   let location = useLocation();
   const navigate = useNavigate();
-  
   const rerenderHome = () => {
     setRerenderKey((prevKey) => prevKey + 1);
   };
 
   useEffect(() => {
-    !admin && navigate("/");
+    admin && navigate("/admin");
   }, [admin]);
 
   useEffect(() => {
@@ -35,7 +34,7 @@ function App() {
   return (
     <>
       {location.pathname !== "/admin" && location.pathname !== "/banned" ? (
-        <NavBar rerenderHome={rerenderHome}/>
+        <NavBar rerenderHome={rerenderHome} />
       ) : null}
 
       <Routes>
