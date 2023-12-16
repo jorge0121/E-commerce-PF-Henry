@@ -1,15 +1,12 @@
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { setSendUser } from "../../redux/reducers/SendUser/sendUserSlice";
 import {
   setUserBooks,
   unSetUserBooks,
   removeUserBooks,
   updateUserBooks,
 } from "../../redux/reducers/Users/UserSlice";
-import {
-  setSendUser,
-  unSetSendUser,
-} from "../../redux/reducers/SendUser/sendUserSlice";
 
 function CartHandler() {
   const dispatch = useDispatch();
@@ -52,8 +49,12 @@ function CartHandler() {
       const userName = userData.name;
       const userEmail = userData.email;
       const userAddress = userData.address;
+      const booksName = userBooks.map((book) => book.title).join(", ");
       const userPhone = userData.phone;
-      dispatch(setSendUser({ userName, userEmail, userAddress, userPhone }));
+
+      dispatch(
+        setSendUser({ userName, userEmail, userAddress, booksName, userPhone })
+      );
     }
     if (id && email) {
       try {
@@ -69,24 +70,23 @@ function CartHandler() {
 
     try {
       const Endpoint =
-        "https://e-commerce-pf-henry.onrender.com/checkout/session"; //CAMBIAR POR LA RUTA AL BACK EN RENDER
+        "https://e-commerce-pf-henry.onrender.com/checkout/session";
 
       // const data = userBooks.map((book) => ({
       //   productName: book.title,
       //   productDescription: book.description,
       //   unitAmount: totalUSD,
       // }));
-
+      const amountInCents = Math.round(totalUSD * 100);
       const data = {
         productName: userBooks.map((book) => book.title).join(", "),
-        unitAmount: totalUSD,
+        unitAmount: amountInCents,
       };
+      console.log("data", data);
       const response = await axios.post(Endpoint, data);
 
-      console.log("response", response.data);
       if (response.data) {
         window.location.href = response.data;
-        dispatch(unSetSendUser());
       }
     } catch (error) {
       console.log(error);
@@ -104,15 +104,3 @@ function CartHandler() {
 }
 
 export default CartHandler;
-
-//buyBooks
-
-//DA ERROR AL RECIBIR EL DATA PERO DESDE INSOMNIA ANDA
-
-// JSON DE INSOMNIA EJEMPLO
-//http://localhost:3001/checkout/session
-//{
-// "productName": "garcia marquez" ,
-// "productDescription":"realismo Magico",
-// "unitAmount":2000
-//}

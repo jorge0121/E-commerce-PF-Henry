@@ -4,6 +4,7 @@ const initialState = {
   userName: "",
   userEmail: "",
   userAddress: "",
+  booksName: "",
   userPhone: "",
   totalUSD: 0,
 };
@@ -16,6 +17,7 @@ export const sendUserSlice = createSlice({
       state.userName = action.payload.userName;
       state.userEmail = action.payload.userEmail;
       state.userAddress = action.payload.userAddress;
+      state.booksName = action.payload.booksName;
       state.userPhone = action.payload.userPhone;
     },
 
@@ -26,6 +28,7 @@ export const sendUserSlice = createSlice({
       state.userName = "";
       state.userEmail = "";
       state.userAddress = "";
+      state.booksName = "";
       state.userPhone = "";
     },
   },

@@ -6,7 +6,6 @@ function FormBuy() {
   const { checkBook } = CartHandler();
 
   const {
-    // reset,
     register,
     handleSubmit,
     formState: { errors },
