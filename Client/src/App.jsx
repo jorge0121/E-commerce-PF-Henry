@@ -23,9 +23,9 @@ function App() {
     setRerenderKey((prevKey) => prevKey + 1);
   };
 
-  useEffect(() => {
-    admin && navigate("/admin");
-  }, [admin]);
+  // useEffect(() => {
+  //   admin && navigate("/admin");
+  // }, [admin]);
 
   useEffect(() => {
     banned && navigate("/banned");
