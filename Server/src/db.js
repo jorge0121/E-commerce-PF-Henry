@@ -10,7 +10,7 @@ const { USER, PASSWORD, HOST, PORT, BDD } = process.env;
 const { Sequelize } = require("sequelize");
 
 // Conexion
-const database = new Sequelize(`postgres://pf_h7dt_user:WW3ny2UlgXnoBkpTZ56wUwt4NxPpH7I6@dpg-clj6jrug1b2c73ann0tg-a.oregon-postgres.render.com/pf_h7dt`,
+const database = new Sequelize(`postgresql://postgres:FaB-A3GB3G3f-3Cf-D43-ccccF1*EggA@monorail.proxy.rlwy.net:30475/railway`,
   { logging: false,
     native: false, 
   dialectOptions: {
