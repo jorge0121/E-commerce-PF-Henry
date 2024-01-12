@@ -10,9 +10,16 @@ const { USER, PASSWORD, HOST, PORT, BDD } = process.env;
 const { Sequelize } = require("sequelize");
 
 // Conexion
-const database = new Sequelize(
-  `postgres://db_e_commerce_8ezv_user:mGIyTlONZ8LGmAbkxouDZLf7Erwpt9Xm@dpg-clu5q9a1hbls73ea8nk0-a/db_e_commerce_8ezv`,
-  { logging: false }
+const database = new Sequelize(`postgres://pf_h7dt_user:WW3ny2UlgXnoBkpTZ56wUwt4NxPpH7I6@dpg-clj6jrug1b2c73ann0tg-a.oregon-postgres.render.com/pf_h7dt`,
+  { logging: false,
+    native: false, 
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Solo si estás usando una base de datos que no tiene un certificado válido
+    },
+  },
+  }
 );
 
 //postgresql://postgres:-3EADg6-f3Df1g*bFDb4BC*23GeDbBag@viaduct.proxy.rlwy.net:49375/railway
