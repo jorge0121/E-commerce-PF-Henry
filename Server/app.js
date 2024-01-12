@@ -3,7 +3,7 @@ const {database } = require("./src/db")
 const server = require("./src/server")
 
 
-database.sync({ alter: true}).then(() => {
+database.sync({ force: true}).then(() => {
     server.listen(3001, () => {
       console.log("Server listening on port 3001");
     })
