@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+const URL= "https://server-pf.onrender.com";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -26,7 +27,7 @@ const UserList = () => {
     setUsers(updatedUsers);
     try {
       await axios.put(
-        `https://e-commerce-pf-henry.onrender.com/user/update?userId=${user.id}`,
+        `${URL}/user/update?userId=${user.id}`,
         updatedUsers.find((b) => b.id === user.id)
       );
     } catch (error) {
@@ -41,7 +42,7 @@ const UserList = () => {
     setUsers(updatedUsers);
     try {
       await axios.put(
-        `https://e-commerce-pf-henry.onrender.com/user/update?userId=${user.id}`,
+        `${URL}/user/update?userId=${user.id}`,
         updatedUsers.find((b) => b.id === user.id)
       );
     } catch (error) {
@@ -53,7 +54,7 @@ const UserList = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://e-commerce-pf-henry.onrender.com/user?page=${page}`
+          `${URL}/user?page=${page}`
         );
         if (response) {
           const totalPages = Math.ceil(response.data.count / 8);

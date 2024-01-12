@@ -12,6 +12,7 @@ import {
   setDataG,
   setTotalData,
 } from "../redux/reducers/Books/booksSlice";
+const URL= "https://server-pf.onrender.com"
 
 function Home({ rerenderKey }) {
   const { author, year, gender, value, organization, page } = useSelector(
@@ -26,7 +27,7 @@ function Home({ rerenderKey }) {
       const homeFuntion = async () => {
         try {
           const { data } = await axios(
-            `https://e-commerce-pf-henry.onrender.com/book?page=${page}`
+            `${URL}/book?page=${page}`
           );
           if (data) {
             const totalPages = Math.ceil(data.count / 4);
@@ -44,7 +45,7 @@ function Home({ rerenderKey }) {
   useEffect(() => {
     const cositas = async () => {
       const { data } = await axios(
-        "https://e-commerce-pf-henry.onrender.com/book/author-year-gender"
+        `${URL}/book/author-year-gender`
       );
       if (data) {
         dispatch(setDataA(data.dataA));

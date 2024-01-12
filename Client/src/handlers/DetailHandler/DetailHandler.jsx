@@ -2,7 +2,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setEnviado } from "../../redux/reducers/BookDetail/BookDetailSlice";
-
+const URL= "https://server-pf.onrender.com";
 export function DetailHandler() {
   const dispatch = useDispatch();
   const { detail } = useSelector((state) => state.bookDetail);
@@ -14,7 +14,7 @@ export function DetailHandler() {
     try {
       if (commentation) {
         const { data } = await axios.post(
-          `https://e-commerce-pf-henry.onrender.com/comment?bookId=${detail.id}&userId=${id}`,
+          `${URL}/comment?bookId=${detail.id}&userId=${id}`,
           commentation
         );
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { uploadImage } from "../../firebase-config";
+const URL= "https://server-pf.onrender.com";
 
 const FormCreateBook = () => {
   const [file, setFile] = useState(null);
@@ -24,7 +25,7 @@ const FormCreateBook = () => {
       console.log(arrayData);
 
       const response = await axios.post(
-        "https://e-commerce-pf-henry.onrender.com/book",
+        `${URL}/book`,
         arrayData[0]
       );
 

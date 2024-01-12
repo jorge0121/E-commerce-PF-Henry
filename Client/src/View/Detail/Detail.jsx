@@ -9,6 +9,7 @@ import {
   setCommentations,
 } from "../../redux/reducers/BookDetail/BookDetailSlice";
 import Reviews from "../../component/Reviews/Reviews";
+const URL= "https://server-pf.onrender.com"
 
 function Detail() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function Detail() {
     const detailHandler = async (id) => {
       try {
         const { data } = await axios(
-          `https://e-commerce-pf-henry.onrender.com/book/${id}`
+          `${URL}/book/${id}`
         );
         if (data) {
           dispatch(setBookDetail(data));

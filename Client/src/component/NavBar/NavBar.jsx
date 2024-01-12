@@ -8,6 +8,8 @@ import { setBook, setTotalData } from "../../redux/reducers/Books/booksSlice";
 import logo from "./../../img/logo2.png";
 import { NavLink } from "react-router-dom";
 
+const URL= "https://server-pf.onrender.com";
+
 const Navbar = () => {
   const { id, admin } = useSelector((state) => state.user);
 
@@ -19,7 +21,7 @@ const Navbar = () => {
     try {
       if (searchTerm.trim() !== "") {
         const { data } = await axios(
-          `https://e-commerce-pf-henry.onrender.com/book?name=${searchTerm}`
+          `${URL}/book?name=${searchTerm}`
         );
         if (data) {
           dispatch(setBook(data));

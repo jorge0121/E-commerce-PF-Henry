@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { unSetSendUser } from "../../redux/reducers/SendUser/sendUserSlice";
+const URL= "https://server-pf.onrender.com";
 
 function Success() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Success() {
   useEffect(() => {
     const sendEmail = async () => {
       const { data } = await axios.post(
-        `https://e-commerce-pf-henry.onrender.com/send-email?userEmail=${userEmail}&totalUSD=${totalUSD}&booksName=${booksName}&userName=${userName}&userAddress=${userAddress}`
+        `${URL}/send-email?userEmail=${userEmail}&totalUSD=${totalUSD}&booksName=${booksName}&userName=${userName}&userAddress=${userAddress}`
       );
       if (data) {
         dispatch(unSetSendUser());

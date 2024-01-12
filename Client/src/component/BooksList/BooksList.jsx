@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditForm from '../EditForm/EditForm'
 import style from './BooksList.module.css'
-
+const URL= "https://server-pf.onrender.com"
 const BooksList = () => {
+
   
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
@@ -43,7 +44,7 @@ const BooksList = () => {
     // Hacer la solicitud PUT para actualizar el estado en el servidor
     try {
       await axios.put(
-        `https://e-commerce-pf-henry.onrender.com/book/update/${book.id}`,
+        `${URL}/book/update/${book.id}`,
         updatedBooks.find((b) => b.id === book.id)
       );
     } catch (error) {
@@ -54,7 +55,7 @@ const BooksList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://e-commerce-pf-henry.onrender.com/book?page=${page}`);
+        const response = await axios.get(`${URL}/book?page=${page}`);
         if(response){
           const totalPages = Math.ceil(response.data.count / 4);
             setTotalData(totalPages);

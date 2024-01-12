@@ -9,7 +9,7 @@ import {
   setBookOrganization,
   setBookPage,
 } from "../../redux/reducers/BookFilter/BookFilterSlice";
-
+const URL= "https://server-pf.onrender.com";
 export function FilterHandler() {
   const dispatch = useDispatch();
   const { author, year, gender, value, organization, page } = useSelector(
@@ -55,7 +55,7 @@ export function FilterHandler() {
     }
     try {
       const { data } = await axios(
-        `https://e-commerce-pf-henry.onrender.com/book/booksort?value=${value}&organization=${organization}&page=${page}`
+        `${URL}/book/booksort?value=${value}&organization=${organization}&page=${page}`
       );
       if (data) {
         const totalPages = Math.ceil(data.count / 4);
@@ -70,7 +70,7 @@ export function FilterHandler() {
   const handlerFilter = async () => {
     try {
       const { data } = await axios(
-        `https://e-commerce-pf-henry.onrender.com/book/filter?author=${author}&year=${year}&gender=${gender}&page=${page}`
+        `${URL}/book/filter?author=${author}&year=${year}&gender=${gender}&page=${page}`
       );
       if (data) {
         const totalPages = Math.ceil(data.count / 4);
@@ -91,7 +91,7 @@ export function FilterHandler() {
     dispatch(setBookPage({ page: 1 }));
     try {
       const { data } = await axios(
-        `https://e-commerce-pf-henry.onrender.com/book?page=${page}`
+        `${URL}/book?page=${page}`
       );
       if (data) {
         const totalPages = Math.ceil(data.count / 4);

@@ -11,6 +11,8 @@ import {
   updateUserBooks,
 } from "../../redux/reducers/Users/UserSlice";
 
+const URL= "https://server-pf.onrender.com";
+
 function CartHandler() {
   const dispatch = useDispatch();
   const { userBooks, id, email, idBooks } = useSelector((state) => state.user);
@@ -64,7 +66,7 @@ function CartHandler() {
     if (id && email) {
       try {
         await axios.put(
-          `https://e-commerce-pf-henry.onrender.com/user/update?userId=${id}`,
+          `${URL}/user/update?userId=${id}`,
           { idBooks }
         );
       } catch (error) {
@@ -75,7 +77,7 @@ function CartHandler() {
 
     try {
       const Endpoint =
-        "https://e-commerce-pf-henry.onrender.com/checkout/session";
+        `${URL}/checkout/session`;
 
       const amountInCents = Math.round(totalUSD * 100);
       const data = {

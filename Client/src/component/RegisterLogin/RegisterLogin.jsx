@@ -16,6 +16,7 @@ import {
   signOut,
   signInWithPopup,
 } from "firebase/auth";
+const URL= "https://server-pf.onrender.com"
 
 //https://e-commerce-pf-henry.onrender.com/user?page=1  ==>GET para admins
 //https://e-commerce-pf-henry.onrender.com/user/update?userId=ID DEL USUARIO A MODIFICAR ==>modificar usuarios
@@ -52,7 +53,7 @@ function RegisterLogin() {
         const email = credentials.user.email;
         try {
           const { data } = await axios.post(
-            `https://e-commerce-pf-henry.onrender.com/user`,
+            `${URL}/user`,
             {
               id,
               name,
@@ -96,7 +97,7 @@ function RegisterLogin() {
         if (id) {
           try {
             const { data } = await axios(
-              `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
+              `${URL}/user/client?id=${id}`
             );
             if (data) {
               const admin = data.admin;
@@ -131,7 +132,7 @@ function RegisterLogin() {
         if (id) {
           try {
             const { data } = await axios(
-              `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
+              `${URL}/user/client?id=${id}`
             );
             if (data) {
               const admin = data.admin;
@@ -144,7 +145,7 @@ function RegisterLogin() {
             } else {
               try {
                 const { data } = await axios.post(
-                  `https://e-commerce-pf-henry.onrender.com/user`,
+                  `${URL}/user`,
                   {
                     id,
                     name,
@@ -154,7 +155,7 @@ function RegisterLogin() {
                 if (data) {
                   try {
                     const { data } = await axios(
-                      `https://e-commerce-pf-henry.onrender.com/user/client?id=${id}`
+                      `${URL}/user/client?id=${id}`
                     );
                     if (data) {
                       const admin = data.admin;
